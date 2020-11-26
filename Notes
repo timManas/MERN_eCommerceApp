@@ -1,0 +1,13 @@
+Notes
+
+1. How to create a BoilerPlate React App ?
+- Use the CreateReactApp via https://reactjs.org/docs/create-a-new-react-app.html
+- To create a project, run:
+    npx create-react-app nameOfYourApp
+    cd my-app
+    npm start
+
+Note: In our case we used: 
+    npx create-react-app frontEnd   
+        > Why FrontEnd ? Because we React is the frontEnd 
+        > Once finished, it will create a boilerPlate React App in a folder called "frontend"
