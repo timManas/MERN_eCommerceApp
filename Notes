@@ -11,3 +11,72 @@ Note: In our case we used:
     npx create-react-app frontEnd   
         > Why FrontEnd ? Because we React is the frontEnd 
         > Once finished, it will create a boilerPlate React App in a folder called "frontend"
+
+2. How to start the application once CreateReactApp finishes ?
+- Go to the frontend folder
+- Type in:
+    npm run
+- Go to browser under http://localhost:3000
+
+3. Where is your starting point ?
+- It is the index.html file located in frontend > public 
+- However, the starting point for react Apps is "index.js"  located in frontend > src
+
+4. Regular syntax vs Arrow functions.
+Both do the same thing
+Regular Functional component  syntax:
+
+function App() {
+  return (
+    <>
+      <h1>Welcome to ProShop</h1>
+    </>
+  )
+}
+
+Arrow Functional Components
+const App = () => {
+  return (
+    <>
+      <h1>Welcome to ProShop</h1>
+    </>
+  )
+}
+
+Q5. What are react Components ? 
+Q6. What is React BootStrap ?
+- Need to install Bootstrap first 
+
+Q7. What is BootSwatch ?
+- Free themes for bootstrap 
+- Bootstrap files but customized to have different themes, colors, fonts ..etc
+
+8. How to install BootSwatch and use them from Bootswatch ?
+- Download theme on bootswatch under "bootstrap.min"
+- Drag and Drop to src folder 
+- Go into index.js and import using:
+    import './bootstrap.min.css'
+  
+9. Note: Once you have bootstrap installed, Now you can install React-BootStrap
+
+10. How to install React-BootStrap ?
+- Note: Make sure you follow step 8 first and install bootstrap theme
+- Run: 
+  npm i react-bootstrap
+
+Q11. What is a container ? 
+Q12. How to use Containers in App ? 
+Q13. What is cdnjs ?
+
+Q14. Note: For this app, we use "font awesome", we use cdnJS to import it
+
+15. How to use 'font awesome' into application ?
+- Go to cdnJS
+- Type in font awesome in search bar 
+- Copy link tag
+- Place in index.html in public folder 
+Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
+- Why ? So we can use icon classes 
+- Now go to Header and add this line in:
+  <i className='fas fa-shopping-cart'></i>
+  <i className='fas fa-user'></i>
