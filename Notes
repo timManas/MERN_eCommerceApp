@@ -44,6 +44,37 @@ const App = () => {
 }
 
 Q5. What are react Components ? 
+- Components are independent and reusable bits of code 
+- Server as JS Functions
+- Return HTML via a render function
+- Comes in two types : Class components & Function Components
+
+Q5a. What is Class Component ?
+- Class component must extend React.Component
+- Gives your component access to React.Components via inheritance
+- Requires a render() method, this method returns HTML
+Ex: 
+class Car extends React.Component {
+  render() {
+    return <h2> Hello World </h2>
+  }
+}
+To use this component we use it a file like this 
+<Car> </Car> 
+Or
+ReactDom.render(<Car />, document.getElementById('root'))
+
+Q5b. What is Function Component ? 
+- Returns HTML
+Ex: 
+function Car() {
+    return <h2>Hi, I AM car</h2>
+}
+
+To Display Car:
+ReactDom.render(<Car/>, document.getElementById('root'))
+
+
 Q6. What is React BootStrap ?
 - Need to install Bootstrap first 
 
@@ -65,8 +96,15 @@ Q7. What is BootSwatch ?
   npm i react-bootstrap
 
 Q11. What is a container ? 
+- Similar to Components
+
 Q12. How to use Containers in App ? 
+- Import it in a file using {}
+Ex: import { Container } from 'react-bootstrap' // We import Containers from react-bootstrap
+
 Q13. What is cdnjs ?
+- It is Content Delivery Network for JS
+- Provides contents like fonts, libraries ..etc for websites
 
 Q14. Note: For this app, we use "font awesome", we use cdnJS to import it
 
@@ -80,3 +118,194 @@ Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnj
 - Now go to Header and add this line in:
   <i className='fas fa-shopping-cart'></i>
   <i className='fas fa-user'></i>
+
+Q16. When to use {} in import ? 
+- Basically when Component youre trying to import does NOT have "export default"
+Ex:
+import  { A } from './A'
+It only works if A contains a named export called A:
+export const A = 42
+export const myA = 43
+export const Something = 50
+
+Note: a module can only have ONE default export, but as many exports areyoud like
+
+
+Q17. How to access Properties in COmponents ? 
+- On the Component, place it inside the '()' 
+Note: Make sure that the Component calling it does have properties
+
+xQ18. What is destructuring ?
+- DeStructuring allows to unpack values from arrays, properties of objects  into
+distinct variable data and assigning to variables
+Ex: Array DeStructuring
+[x,y,z] = [10,20,30]
+console.log(x)
+console.log(y)
+
+
+Ex: Object DeStructuring
+({x,y} = {x:10, y:20})
+console.log(x)  // 10
+console.log(y)  // 20
+
+Q19. What is the difference between {}, ${}, {{}}
+Ex: value={product.rating} text={`${product.numReviews} reviews`} 
+Ex: style={{ color }}
+- {} : are special syntax in JSX. Used to evaluate JS Expression at compilation
+- ${}: are used template literals. Used when we have backticks ``
+- {{}}: are for fetching CSS
+
+Q20. Where do you get "fas fa-star", "fa-star-half-alt" & "far fa-star" from ?
+- Go to font awesome and search for star
+- Then you will see an Example: "<i class="fas fa-star"></i>"
+
+Q21. How to set default properties on a component ?
+- Create a defaultProps in the Component of choice
+- This will be enabled for all elements in the component
+Ex: 
+Rating.defaultProps = {
+  color: '#f8e825',
+}
+
+Q22. What is propTypes ?
+- PropTypes can type check if property has the correct format 
+Ex:
+Rating.propTypes = {
+  value: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  color: PropTypes.string,
+}
+
+23. How to install react Router ?
+- Go to frontend Folder and type in:
+  npm i react-router-dom react-router-bootstrap
+
+Q24. What is BrowserRouter ? 
+- React Component
+- Used for doing client side routing with URL segments
+- Routes to different webpages of your applications
+Ex. Routing to home using '/' or  Product page using '/product'
+
+Q25. Why do we need to wrap the entire app in BrowserRouter ?
+- Because this is the entry point of the application ?
+- Where else would you put it ?
+
+Q26. What is the 'exact' keyword used in Route ? 
+<Route path='/' component={HomeScreen} exact />
+- Basically, whenever we type in /page1 or /page2, it will always forward to HomeScreen
+- We dont want that, instead we want to go to the homescreen if the user routes to '/' exactly
+- If you type in '/' in your application, you will only go to homescreen
+- If you type in 'http://localhost:3000/product/2', then it will NOT go to the homescreen
+
+Q27. What is the ':id' in '/product/:id'  ?
+- That is a place holder value which allows the user to route to any page dynamically
+Ex: /product/1  Or /product/2 Or /product/3
+
+28. NOTE !! Since this is SPA, we do NOT want to use 'a'  tags(i.e <a href></a>). We want to use 'Link' instead
+using bootstrap
+
+Q29. What is the difference between Link vs LinkContainer ?? 
+
+Q30. What happens when you type in a path which is not defined in the Router?
+Ex: http://localhost:3000/helloWorld
+- Brings up an empty Page with No components
+
+Q31. How does product page know which id is sent ?
+- Its in the URL being passed by the Router
+- Remember that in App.js we use <Route path='/product/:id' component={ProductScreen} />
+- Then we destructure and call it 'match'
+const ProductScreen = ({ match }) => {
+  const product = products.find((p) => p._id === match.params.id)
+  console.log('match: ' + match.params.hello)
+  return <div>{product.name}</div>
+}
+*** Wait how do you know its /product/1 or /product/2 ???
+- BECAUSE it is defined in the 'products.js' file in the HomeDirectory
+
+
+Q32. What is the 'fluid' keyword ?
+- Makes images/object NOT go past its container
+
+33. When do we use backticks ``?
+Ex:
+  <Rating value={product.rating} text={`${product.numReviews}`} />
+
+34. How to disable a button if there is no stock left ? 
+- This checks if the button has stock or not:
+<Button className='btn-block' type='button'disabled={product.countInStock === 0}
+
+Q35. Why do we need to use mongoose ?
+
+Q36. What is the purpose of the backend ?
+- Create controllers, models ..etc
+
+37. To get the data from the backend, we need to perform HTTP request like 'GET' 'POST' ..etc
+- Basically:
+GET   : Used for fetching data (Ex: /api/products)
+POST  : Used for adding data   (Ex: /api/products)
+PUT   : Used for updating data  (Ex: /api/products/25 .... Note: you need to have an id)
+DELETE : Used for delete data   (Ex: /api/products/25 .... Note: you need to have an id)
+
+::: For BackEnd
+38. How to initialize package.json 
+- Go to root folder and type in:
+  npm init
+- Follow the instructions
+- After this is completed, it will create a 'package.json' in the home folder
+
+Ex:
+package name: (mern_ecommerceapp) 
+version: (1.0.0) 
+description: MERN shopping cart app
+entry point: (index.js) server.js
+test command: 
+git repository: (https://github.com/timManas/MERN_eCommerceApp.git) 
+keywords: 
+author: 
+license: (ISC) MIT
+About to write to /Users/timmanas/ProgrammingProjects/MERNStack/MERN_eCommerceApp/package.json:
+
+{
+  "name": "mern_ecommerceapp",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timManas/MERN_eCommerceApp/issues"
+  },
+  "homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
+}
+
+Q39. How to install express ? 
+- Make sure youre in the root folder
+- Type in:
+  npm i express
+
+40. Note !!! Our Entry point in Backend is server.js
+
+Q41. What is modules ? 
+- Backend is using Common JS 
+- FrontEnd is using ES Module (i.e using import syntax)
+
+Q42. How to run node backend Server ?
+- Type the following in the root folder:
+  node backend/server
+
+43. Instead of constantly having to type in "node backend/server" just to start up the server,
+we can create a script on the 'package.json' to start it
+Ex: 
+ "scripts": {
+    "start": "node backend/server"
+  },
+- This will allow you to run node server just using:
+  'npm start'
