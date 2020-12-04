@@ -236,6 +236,7 @@ Ex:
 <Button className='btn-block' type='button'disabled={product.countInStock === 0}
 
 Q35. Why do we need to use mongoose ?
+- Communicates between MongoDB and Backend Express server
 
 Q36. What is the purpose of the backend ?
 - Create controllers, models ..etc
@@ -309,3 +310,44 @@ Ex:
   },
 - This will allow you to run node server just using:
   'npm start'
+
+
+44. How to start the frontEnd & BackEnd ?
+Note there are two process to start:
+1. FrontEnd:
+  - Go to frontend folder and type in: "npm start"
+
+2. BackEnd:
+  - Go to Root folder and type in: "npm start"
+
+
+45. What is axios ?
+- HTTP Library which is used to make HTTP request
+
+46. How to install axios ?
+- Go to frontend folder and type:
+  npm i axios
+
+47. Flow is 
+Client -> go to localhost:3000 -> Gets Website > Website makes HTTP request for products on backend > Backend sends product to Website Client
+
+48. What is state ? 
+- Global level state
+- Application level state (Component, form)
+
+Q49. What is the useState hook in react ? 
+- It is to use state in functional components
+- 
+Ex: const [products, setProducts] = useState([])
+"products" is what we want to call the state
+"setProducts" is the function we want to call to manipulate the state
+
+
+Q50. What is the useEffect hook in react ?
+- Makes a request to the backend
+- Runs as soon as the component loads
+
+51. How to create a proxy to connect from localhost:3000 to localhost:5000 ? 
+- Go to frontend package.json
+- Add in this line "proxy": "http://127.0.0.1:5000"
+- Restart frontEnd Server
