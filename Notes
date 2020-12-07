@@ -393,3 +393,20 @@ Ex:
   "dev": "concurrently \"npm run server\" \"npm run client\""
 - Go to root and type in:
   npm run dev
+Ex:
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+
+
+Q56. What is dotenv ? 
+
+57. How to install dotenv ?
+- Type:
+ npm i dotenv
+
+58. What is the purpose of the .env file ?
+- Store any keys, tokens, Ports of the environment on a file
