@@ -410,3 +410,24 @@ Q56. What is dotenv ?
 
 58. What is the purpose of the .env file ?
 - Store any keys, tokens, Ports of the environment on a file
+
+
+
+Q59. What is the ES6 Modules ? 
+- Note: require() uses the common JS syntax
+
+Q60. How to convert from common JS syntax to ES6 Module
+- Must have node v14.6+ a
+  > How to install latest version of node ?
+  > Use nvm ...Type in nvm install 14.51.1
+- Go to package.json
+- Add in "type": "module 
+Ex: 
+  "name": "mern_ecommerceapp",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "server.js",
+  "type": "module",
+
+61.  If using ES6 module, you need to have ".js" in files 
+Ex: 
