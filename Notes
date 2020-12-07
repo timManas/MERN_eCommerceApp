@@ -351,3 +351,45 @@ Q50. What is the useEffect hook in react ?
 - Go to frontend package.json
 - Add in this line "proxy": "http://127.0.0.1:5000"
 - Restart frontEnd Server
+
+Q52. What is nodemon ?
+- Nodemon is a tool which constantly watches the server so we dont have to keep resetting it
+- If you dont use nodemon, you have keep restarting the server to pick up the changes
+
+Q53. What is concurrently ? 
+- Allows user to run both backend + frontend at the same time
+
+52. How to install nodemon ? 
+- Go to root and type in:
+npm i nodemon concurrently
+
+53. How to install as Dev Dependencies ?
+- Type in -D in npm install
+Ex: 
+npm i -D nodemon concurrently
+
+- After install, it should get add into Dev depenencies 
+Ex: 
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+
+
+54. How to use nodemon ? 
+- Install nodemon
+- Once install go to your package.json 
+- Go to the scripts and add in this line "server": "nodemon backend/server"
+Ex:
+ "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server"
+  },
+
+55. How to run both Backend + FrontEnd at the same time
+- Install concurrently
+- Go to root package.json
+- Add this line to scripts:
+  "dev": "concurrently \"npm run server\" \"npm run client\""
+- Go to root and type in:
+  npm run dev
