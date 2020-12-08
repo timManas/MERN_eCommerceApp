@@ -403,6 +403,7 @@ Ex:
 
 
 Q56. What is dotenv ? 
+- loads environment variables from .env file into process.environment
 
 57. How to install dotenv ?
 - Type:
@@ -430,4 +431,28 @@ Ex:
   "type": "module",
 
 61.  If using ES6 module, you need to have ".js" in files 
-Ex: 
+
+::: MongdoDB
+
+Q62. What is MongoDB Compass ?
+- Desktop GUI to managing your mongoDB database
+- Why use compass ? So we dont have to constantly log into Atlas and simply check compass
+
+63. How to connect through Compass ?
+- Go to MongoDb Atlas
+- Go to Clusters > connect > Connect using MongoDb Compass
+- Select "I have MongoDB Compass"  
+- Copy the connection string
+- Paste into MongoDB Compass
+  > Dont forget to change the password
+  > Dont forgett to change from /test to /DatabaseNAME_XYZ ...(Ex: /proshop)
+  Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
+
+64. How to connect your application to MongoDB URI
+- Go to Atlas
+- Go to Clusters > connect > Connect your application
+- Copy connection string
+- Place inside .env file
+  > Dont forget to change the password
+  > Dont forget to change dbname
+Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
