@@ -433,7 +433,6 @@ Ex:
 61.  If using ES6 module, you need to have ".js" in files 
 
 ::: MongdoDB
-
 Q62. What is MongoDB Compass ?
 - Desktop GUI to managing your mongoDB database
 - Why use compass ? So we dont have to constantly log into Atlas and simply check compass
@@ -462,6 +461,10 @@ Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/prosh
 - Allows user to create models and schema  
 
 Q66. What is a Schema ? 
+- Represent the structure of a database
+- Also Schema = Database
+- Has three types of Schema: Physical, Logical and View Schema
+- Contains objects (ex. Tables, Columns, DataTypes, views, keys ..etc)
 
 67. How to install Mongoose ?
 - Go to root:
@@ -471,3 +474,18 @@ Q66. What is a Schema ?
 - npm i colors
 
 69. What is a model ?
+- This represents the data model
+- Encapsultates business logic and data
+
+70. How to prepare Data to be imported to MongoDB ?
+Note: Make sure to remove the _id in the product.js first
+Why ? Because when data is entered into mongoDB, mongoDB automatically
+assigns an _id to it
+
+71. What is bcryptJS ?
+- Hashes your password
+
+70. How to install bcryptjs ?
+- npm i bcryptjs
+
+73. How to hash passwords using bcrypt ? 
