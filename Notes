@@ -456,3 +456,16 @@ Q62. What is MongoDB Compass ?
   > Dont forget to change the password
   > Dont forget to change dbname
 Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
+
+65. What is Mongoose ? 
+- Object modelling for NodeJS
+- Allows user to create models and schema  
+
+Q66. What is a Schema ? 
+
+67. How to install Mongoose ?
+- Go to root:
+  npm i mongoose
+
+68. Optional: Install colors package for your console logs
+- npm i colors
