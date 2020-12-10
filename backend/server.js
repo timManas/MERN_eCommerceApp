@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import connectDB from './config/db.js'
 import products from './data/products.js'
+import productRoutes from './routes/productRoutes.js'
 
 // This is common JS Syntax
 // const express = require('express')
@@ -18,16 +19,20 @@ connectDB()
 // Initializes express
 const app = express()
 
-// GET list of products in JSON format
-app.get('/api/products', (req, res) => {
-  res.json(products) // Converts the product.js into json type
-})
+// How to fetch from dataJSON from a specific URL
+// // GET list of products in JSON format
+// app.get('/api/products', (req, res) => {
+//   res.json(products) // Converts the product.js into json type
+// })
 
-// GET single Product
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find((p) => p._id === req.params.id)
-  res.json(product)
-})
+// // GET single Product
+// app.get('/api/products/:id', (req, res) => {
+//   const product = products.find((p) => p._id === req.params.id)
+//   res.json(product)
+// })
+
+// Fetch data from Database
+app.use('/api/products', productRoutes)
 
 // Listens at port 5000
 const PORT = process.env.PORT || 5000

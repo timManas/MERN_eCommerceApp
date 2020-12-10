@@ -507,3 +507,11 @@ Or you can put in npm  by:
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
+
+Q76. What is express-async-handler  middleware ? 
+- Simple middleware for handling exceptions inside of async express routes
+and passing them to express error handling
+
+77. How to install express-async-handler ?
+Go to root folder, type in:
+npm i express-async-handler
