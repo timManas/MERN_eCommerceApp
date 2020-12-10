@@ -477,7 +477,7 @@ Q66. What is a Schema ?
 - This represents the data model
 - Encapsultates business logic and data
 
-70. How to prepare Data to be imported to MongoDB ?
+--> 70. How to prepare Data to be imported to MongoDB ?
 Note: Make sure to remove the _id in the product.js first
 Why ? Because when data is entered into mongoDB, mongoDB automatically
 assigns an _id to it
@@ -489,3 +489,21 @@ assigns an _id to it
 - npm i bcryptjs
 
 73. How to hash passwords using bcrypt ? 
+
+Q74. What is a database seeder ? 
+- Allows user to easily import some sample data
+
+Q75. How to run seeder js file ?
+- Go to root folder type in:
+"node backend/seeder"      - Used for import data
+"node backend/seeder -d"      - Used for destroying data
+Or you can put in npm  by:
+- modify package.json to be: 
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  },
