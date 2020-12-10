@@ -526,4 +526,34 @@ app.use((req,res, next) => {})
 Q80. What to move from one middleware to another ?
 - You have to use the 'next' in the (req,res, next) => {}
 
+81. The Models in the model folder... they are the key values which goes into the Database
+i.e Users has name, email, password, isAdmin as keys.. Hence all values which goes into users needss to have these properties
+- The schema defines what type of values it is expecting (i.e String, Number, Boolean, etc)
+
+82. Middleware just allows to keep track of different error handling
+
 ::::: Redux
+Q83. What is Redux  ? 
+Q84. What is state in Redux ?
+
+Q85. What is component level state ?
+- deals with components (ex: header, footer, screens, dropdown, menu)
+
+Q86. What is global level state .. aka applicate state ?
+- Redux for application state 
+- Use Redux for products, authentication state, shopping cart items ..etc
+
+Q86. What is Redux Pattern ?
+
+Q87. What is Reducers ?
+- Functions that take in actions and pass state to components
+
+Q88. What are actions ?
+- Actions are objects to change a piece of state
+
+Q89. What are action creators ?
+- Dispatch or fire off actions
+
+90. Think of state as cloud hovering your application and when we need somethign to happen,
+we need to create 
+
