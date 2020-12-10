@@ -515,3 +515,15 @@ and passing them to express error handling
 77. How to install express-async-handler ?
 Go to root folder, type in:
 npm i express-async-handler
+
+Q78. What is middleware in react ? 
+- Middleware is function that access to request response cycle
+
+79. How to use your middleware ?
+- You have to use:
+app.use((req,res, next) => {})
+
+Q80. What to move from one middleware to another ?
+- You have to use the 'next' in the (req,res, next) => {}
+
+::::: Redux

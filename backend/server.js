@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import { notFound, errorHandler } from './middleware/middleware.js'
 import connectDB from './config/db.js'
 import products from './data/products.js'
 import productRoutes from './routes/productRoutes.js'
@@ -33,6 +34,12 @@ const app = express()
 
 // Fetch data from Database
 app.use('/api/products', productRoutes)
+
+// Error - 404 handling
+app.use(notFound)
+
+// Error Handling
+app.use(errorHandler)
 
 // Listens at port 5000
 const PORT = process.env.PORT || 5000
