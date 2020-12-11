@@ -557,3 +557,22 @@ Q89. What are action creators ?
 90. Think of state as cloud hovering your application and when we need somethign to happen,
 we need to create 
 
+91. Make sure to install Redux DevTools
+
+92. How to install redux ?
+- Go to frontend folder and type:
+npm i redux react-redux redux-thunk
+
+Q93. What is react-reduxt ? 
+- Redux for react
+> Why do we need this ? it allows react to work with redux
+
+Q94. What is react-thunk ?
+- Middle ware
+- Allows to make async request in action creators, since we need to communicate to servers
+
+Q95. What is redux-devtools-extension ?
+- redux-devtools dont work on their own
+- this extension allows it work
+
+Q96. What is provider ?
