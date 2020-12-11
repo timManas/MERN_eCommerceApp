@@ -576,3 +576,11 @@ Q95. What is redux-devtools-extension ?
 - this extension allows it work
 
 Q96. What is provider ?
+
+Q97. What is arrow function in JS ? 
+
+Q98. There is a pattrn here. We create
+1. Constant
+2. Reducers
+3. Actions
+4. Fire off in Component
