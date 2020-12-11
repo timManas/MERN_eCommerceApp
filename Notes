@@ -534,6 +534,8 @@ i.e Users has name, email, password, isAdmin as keys.. Hence all values which go
 
 ::::: Redux
 Q83. What is Redux  ? 
+- library which allows JS applications to manage application state
+
 Q84. What is state in Redux ?
 
 Q85. What is component level state ?
@@ -545,14 +547,21 @@ Q86. What is global level state .. aka applicate state ?
 
 Q86. What is Redux Pattern ?
 
+
 Q87. What is Reducers ?
 - Functions that take in actions and pass state to components
+- Takes in initial state and action. 
+- Returns that specific part of the global store
 
 Q88. What are actions ?
 - Actions are objects to change a piece of state
+- An object containing a:
+1. Type
+2. Payload
+- Used to tell the reducer how to update the store 
 
 Q89. What are action creators ?
-- Dispatch or fire off actions
+- Function that takes in payload and creates an action object
 
 90. Think of state as cloud hovering your application and when we need somethign to happen,
 we need to create 
@@ -575,7 +584,9 @@ Q95. What is redux-devtools-extension ?
 - redux-devtools dont work on their own
 - this extension allows it work
 
-Q96. What is provider ?
+Q96. What is Provider ?
+- A component from react-redux 
+- Wraps our app component and allows each child component to be connected to the store
 
 Q97. What is arrow function in JS ? 
 
@@ -584,3 +595,42 @@ Q98. There is a pattrn here. We create
 2. Reducers
 3. Actions
 4. Fire off in Component
+
+99. What is combineReducers ? 
+- Function that allows user to put together All reducers into a Single Object (aka. Root Reducer)
+
+100. What is a store/global state ? 
+- An object
+- Think of it as mega state that is accessed and updated with its own functions
+
+101. What is createStore () ?
+- Function from redux that uses rootReducer to create the store 
+
+102. What is dispatch ? 
+- Function from redux
+- Sends an action object to its reducer
+
+103. What is mapStatetoProps ?
+- a Function
+- Function we creaet that takes in global state objects and returns an object to be added 
+to a component as part of its props object
+
+104. What is mapDispatchToProps ? 
+- A function
+- Function we create that takes in dispatch and returns an object to be added to a component as part 
+of its props object
+- Allows component to update data in store
+
+105. What is connect ? 
+- Function from react-redux
+- Allows us to connect to a component to the store by adding items from the store to our component props
+- and adding dispatch to our component properties
+
+106. What is container ?
+- Component that has been connected to the store
+
+107. Flow
+You          Put Stuff into small tube              Tube        Teller                    Computer
+Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root Reducer -> Store -> Do something (Change State...etc)
+            (Create Actions)  (Has Type + Payload)                       (Returns State)
+              

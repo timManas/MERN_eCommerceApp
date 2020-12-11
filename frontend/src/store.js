@@ -1,3 +1,5 @@
+// Note: Stores are object
+// Stores are mega state that is accessed and updated by itsown functions
 // This is where we connect all our reducers and middlware
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
@@ -10,7 +12,7 @@ const reducer = combineReducers({
 
 const initialState = {}
 
-const middleware = [thunk]
+const middleware = [thunk] // What does this do again ?
 
 const store = createStore(
   reducer,

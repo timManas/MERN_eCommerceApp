@@ -1,4 +1,5 @@
-// These are action creators
+// Note: Actions are objects containing a type and payload
+// Used to tell reducer how to update the store
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
