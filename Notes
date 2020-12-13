@@ -635,3 +635,5 @@ Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root R
             (Create Actions)  (Has Type + Payload)                       (Returns State)
               
 Q108. What is useEffect() ?
+
+Q109. What is variant ? 
