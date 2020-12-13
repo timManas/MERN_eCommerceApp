@@ -1,10 +1,11 @@
 // Note: Actions are objects containing a type and payload
 // Used to tell reducer how to update the store
+import axios from 'axios'
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
-} from '../constants/producConstants'
+} from '../constants/productConstants'
 
 export const listProducts = () => async (dispatch) => {
   try {

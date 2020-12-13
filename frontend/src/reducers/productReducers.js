@@ -4,7 +4,7 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
-} from '../constants/producConstants.js'
+} from '../constants/productConstants.js'
 
 export const productListReducer = (state = { products: [] }, action) => {
   // remember actions are objects which contain type and payload

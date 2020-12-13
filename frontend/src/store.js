@@ -14,10 +14,12 @@ const initialState = {}
 
 const middleware = [thunk] // What does this do again ?
 
+// Create store
+// CreateStore: a Function what uses rootReducer to create store
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeWithDevTools(applyMiddleware(...middleware)) // What is compose with dev tools ?
 )
 
 export default store

@@ -634,3 +634,4 @@ You          Put Stuff into small tube              Tube        Teller          
 Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root Reducer -> Store -> Do something (Change State...etc)
             (Create Actions)  (Has Type + Payload)                       (Returns State)
               
+Q108. What is useEffect() ?
