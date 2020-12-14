@@ -1,3 +1,5 @@
+// This is the Loader spinner
+
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
