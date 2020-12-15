@@ -648,3 +648,6 @@ Ex: history.push(`/cart/${match.params.id}?qty=${qty}`)
 Q112. What is the question mark after :id in 
 <Route path='/product/:id?' ?
 - Routes it so that id is NOT mandatory to be in the URI 
+
+Q113. How to save entire cart to LocalStorage ? 
+-   localStorage.setItem('cartItems', getState().cart.cartItems)

@@ -8,13 +8,23 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducers.js'
+import { cardReducer } from './reducers/cartReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  cart: cardReducer,
 })
 
-const initialState = {}
+// Fetch items from localStore if ANY
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : []
+
+// This is where we get our cartItes, tokens ..etc
+const initialState = {
+  cart: { cartItems: cartItemsFromStorage },
+}
 
 const middleware = [thunk] // What does this do again ?
 

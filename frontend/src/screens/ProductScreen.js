@@ -20,7 +20,7 @@ const ProductScreen = ({ history, match }) => {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
 
-  // When user Clicks on the Add to cart Button
+  // When user  Clicks on the Add to cart Button
   // Routes to a new page with URL like this
   // http://localhost:3000/cart/5fd17575665ddc40c43ee5c8?qty=2
   const addToCardHandler = () => {
