@@ -635,5 +635,16 @@ Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root R
             (Create Actions)  (Has Type + Payload)                       (Returns State)
               
 Q108. What is useEffect() ?
+- hook
+- Tells react that your component needs to do something AFTER rendering
+- React will remember the function you passed and call it later after performing DOM Updates
 
 Q109. What is variant ? 
+
+Q110. What is useState() ?
+Q111. What is history ?
+Ex: history.push(`/cart/${match.params.id}?qty=${qty}`)
+
+Q112. What is the question mark after :id in 
+<Route path='/product/:id?' ?
+- Routes it so that id is NOT mandatory to be in the URI 
