@@ -644,6 +644,7 @@ Q109. What is variant ?
 Q110. What is useState() ?
 Q111. What is history ?
 Ex: history.push(`/cart/${match.params.id}?qty=${qty}`)
+- Used to redirect
 
 Q112. What is the question mark after :id in 
 <Route path='/product/:id?' ?
@@ -651,3 +652,6 @@ Q112. What is the question mark after :id in
 
 Q113. How to save entire cart to LocalStorage ? 
 -   localStorage.setItem('cartItems', getState().cart.cartItems)
+
+Q114. What is useSelector() ? 
+Ex:  const cart = useSelector((state) => state.cart)
