@@ -5,6 +5,7 @@ import { notFound, errorHandler } from './middleware/middleware.js'
 import connectDB from './config/db.js'
 import products from './data/products.js'
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 // This is common JS Syntax
 // const express = require('express')
@@ -20,6 +21,8 @@ connectDB()
 // Initializes express
 const app = express()
 
+app.use(express.json()) // allows application to accept JSON data in body
+
 // How to fetch from dataJSON from a specific URL
 // // GET list of products in JSON format
 // app.get('/api/products', (req, res) => {
@@ -34,6 +37,7 @@ const app = express()
 
 // Fetch data from Database
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 // Error - 404 handling
 app.use(notFound)
