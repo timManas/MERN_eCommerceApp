@@ -655,3 +655,12 @@ Q113. How to save entire cart to LocalStorage ?
 
 Q114. What is useSelector() ? 
 Ex:  const cart = useSelector((state) => state.cart)
+ 
+Q115. Where are these parameters coming from ? 
+Ex: 
+const CartScreen = ({ match, location, history }) => {
+const ProductScreen = ({ history, match }) => {
+  
+Q116. What are controllers ?
+
+117. Routes should point to Controller methods

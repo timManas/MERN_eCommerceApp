@@ -16,6 +16,8 @@ const ProductScreen = ({ history, match }) => {
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
+  // Note: This is the component which creates actionCreator > action > Reducer > Store
+  // This is what modifies the state
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])

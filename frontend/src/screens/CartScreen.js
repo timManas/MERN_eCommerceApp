@@ -12,22 +12,28 @@ const CartScreen = ({ match, location, history }) => {
 
   const dispatch = useDispatch()
 
+  // Feth the current Items in store via state
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
   console.log(cartItems) // Fetch Items in the cart
 
+  // Note: This is the component which creates actionCreator > action > Reducer > Store
+  // This is what modifies the state
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
     }
   }, [dispatch, productId, qty])
 
+  // Modifies the Store by removing the item
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
   }
 
+  // Redirects user
+  // If not logged in, will go to log in. If logged in, will go to shipping
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping') // If not logged in, will go to log in. If logged in, will go to shipping
+    history.push('/login?redirect=shipping')
   }
 
   return (
