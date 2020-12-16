@@ -662,5 +662,43 @@ const CartScreen = ({ match, location, history }) => {
 const ProductScreen = ({ history, match }) => {
   
 Q116. What are controllers ?
+- Controls request logic
+- Coordinateds between View and Model
+- Responsible for controllowing the flow of the application execution
+- Every request going into app goes into Controllers and returns a response to the request
+- Can perform different types of action 
 
 117. Routes should point to Controller methods
+
+118. Authentication Request Flow
+Postman > Post request > Server.js routes  > UserController (Does the Authenticaiton)
+
+Q119. What is JWT ? 
+- JSON web token
+- For authorization after authentication
+- Authentication will authorize a user to log into website using secret key called JWT
+- Consist of three different parts:
+1. Header
+2. Payload - Ex: Username, id (Note: Do not put passwords here)
+3. Verify Signature - Verifies nothing has been modified and verifies user is actually them
+
+Q120. What is Bearer Token ?
+Q121. What is node-jsonwebtoken ? 
+
+Q122. How to install json webtoken ?
+- npm i jsonwebtoken
+
+Q123. How to generate a JSON WebToken ? 
+import jwt from 'jsonwebtoken'
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  })
+}
+
+Q124: How to decode a JSON WebToken
+- Take the token from Postman for logging in
+Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
+- Go to JWT.io
+- Paste token into "Encoded"
+- You can see the header, payload, signature 
