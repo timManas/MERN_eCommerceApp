@@ -707,3 +707,6 @@ Q125. What is next in middleware ?
 Ex: const protect = async(req, res, next) => {}
 
 Q126. what does next() do ?
+
+Q127. What is salt on bcryt ?
+  
