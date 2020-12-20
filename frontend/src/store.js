@@ -9,11 +9,13 @@ import {
   productDetailsReducer,
 } from './reducers/productReducers.js'
 import { cardReducer } from './reducers/cartReducers'
+import { userLoginReducer } from './reducers/userReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cardReducer,
+  userLogin: userLoginReducer,
 })
 
 // Fetch items from localStore if ANY
@@ -21,9 +23,15 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
 
-// This is where we get our cartItes, tokens ..etc
+// Fethc user info from localStorage if ANY
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null
+
+// This is where we get our cartItes, tokens, userInfo
 const initialState = {
   cart: { cartItems: cartItemsFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
 }
 
 const middleware = [thunk] // What does this do again ?

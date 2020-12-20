@@ -660,6 +660,9 @@ Q115. Where are these parameters coming from ?
 Ex: 
 const CartScreen = ({ match, location, history }) => {
 const ProductScreen = ({ history, match }) => {
+
+115B. Flow is
+User <=> Request <=> Routes <=> Controllers <=> Response to the request sent back to user
   
 Q116. What are controllers ?
 - Controls request logic
@@ -709,4 +712,3 @@ Ex: const protect = async(req, res, next) => {}
 Q126. what does next() do ?
 
 Q127. What is salt on bcryt ?
-  
