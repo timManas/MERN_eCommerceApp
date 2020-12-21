@@ -9,13 +9,14 @@ import {
   productDetailsReducer,
 } from './reducers/productReducers.js'
 import { cardReducer } from './reducers/cartReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cardReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
 })
 
 // Fetch items from localStore if ANY
