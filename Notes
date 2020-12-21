@@ -715,3 +715,8 @@ Q127. What is salt on bcryt ?
 
 Q128. What is useDispatch ?
 Q129. What is useSelector ? 
+
+Bug130. Found a bug, when the user registers, logouts and clicks on "Register" again on 
+Login screen, we get directed to the home page instead of the registration screen ...
+
+Q131. What is redirect & redirect value ? 
