@@ -712,3 +712,6 @@ Ex: const protect = async(req, res, next) => {}
 Q126. what does next() do ?
 
 Q127. What is salt on bcryt ?
+
+Q128. What is useDispatch ?
+Q129. What is useSelector ? 
