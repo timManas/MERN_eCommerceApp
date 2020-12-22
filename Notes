@@ -720,3 +720,12 @@ Bug130. Found a bug, when the user registers, logouts and clicks on "Register" a
 Login screen, we get directed to the home page instead of the registration screen ...
 
 Q131. What is redirect & redirect value ? 
+
+Q132. Why does Authorization dont need a quotation marks ? 
+Ex: 
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${}`               
+      },
+    }
