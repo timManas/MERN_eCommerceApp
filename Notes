@@ -729,3 +729,8 @@ Ex:
         Authorization: `Bearer ${}`               
       },
     }
+
+Q134. Why do we need to call e.preventDefault()  on eventHandler since its a form ?
+
+Q135. How to move from one page to another ?
+- use history.push()
