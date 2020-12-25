@@ -6,6 +6,7 @@ import connectDB from './config/db.js'
 import products from './data/products.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 
 // This is common JS Syntax
 // const express = require('express')
@@ -38,6 +39,7 @@ app.use(express.json()) // allows application to accept JSON data in body
 // Fetch data from Database
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 // Error - 404 handling
 app.use(notFound)
