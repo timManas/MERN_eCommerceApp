@@ -41,6 +41,11 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : {}
 
+// Fetch payment Method ...New
+// const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
+//   ? JSON.parse(localStorage.getItem('paymentMethod'))
+//   : {}
+
 // This is where we get our cartItes, tokens, userInfo
 const initialState = {
   cart: {

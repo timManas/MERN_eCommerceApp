@@ -22,7 +22,7 @@ const PaymentScreen = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault() // Need to call this since its a form
-    dispatch(savePaymentMethod({ paymentMethod }))
+    dispatch(savePaymentMethod(paymentMethod))
 
     // After disaptching we move to the next page ...which is the place order screen
     history.push('/placeorder')
