@@ -32,6 +32,7 @@ const PlaceOrderScreen = ({ history }) => {
   const orderCreate = useSelector((state) => state.orderCreate)
   const { order, success, error } = orderCreate
 
+  // Redirect user after successful
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`) // Goes into order page, if order was successfully created
