@@ -14,6 +14,9 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
+  USER_LIST_REQUEST,
+  USER_LIST_SUCCESS,
+  USER_LIST_FAIL,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
@@ -184,6 +187,45 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     // If fetching data was not succesful
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+// Fetch the list of Users for Admin
+export const listUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_LIST_REQUEST,
+    })
+
+    // Destructure twice to get the userInfo
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    // Pass token here
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    // Send GET request of user by name/username/password
+    const { data } = await axios.get(`/api/users`, config)
+
+    // Dispatch and send to Reducer
+    dispatch({
+      type: USER_LIST_SUCCESS, // Successfully registers user
+      payload: data,
+    })
+  } catch (error) {
+    // If fetching data was not succesful
+    dispatch({
+      type: USER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

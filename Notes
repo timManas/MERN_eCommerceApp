@@ -775,3 +775,6 @@ Q154. Why do we need to use react-paypal-button-v2 ?
 - npm i react-paypal-button-v2
 
 ::: Admin 
+
+157. This line get(protect, admin, getUsers). Will first go to protect(), then go to admin() then go to getUsers()
+How it does this is by callin in the next() function 
