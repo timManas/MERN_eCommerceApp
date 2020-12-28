@@ -259,7 +259,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     }
 
     // Send DELETE request of user by name/username/password
-    const { data } = await axios.delete(`/api/users/${id}`, config)
+    await axios.delete(`/api/users/${id}`, config)
 
     // Dispatch and send to Reducer
     dispatch({

@@ -25,7 +25,7 @@ const UserListScreen = ({ history }) => {
       // Not logged in or Not admin then redirect to login page
       history.push('/login')
     }
-  }, [dispatch, history, successDelete])
+  }, [dispatch, history, successDelete, userInfo])
 
   // Dispatch the Action
   const deleteHandler = (id) => {
@@ -69,7 +69,7 @@ const UserListScreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit'></i>
                     </Button>
