@@ -17,6 +17,7 @@ import {
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_LIST_RESET,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
@@ -67,6 +68,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_LOGOUT }) // Log user out and send to state
   dispatch({ type: USER_DETAILS_RESET }) // Clears user details in state
   dispatch({ type: ORDER_LIST_MY_RESET }) // Clears user orders in state
+  dispatch({ type: USER_LIST_RESET }) // Clears the user list in admin
 }
 
 // Registers user

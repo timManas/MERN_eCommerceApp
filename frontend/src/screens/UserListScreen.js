@@ -6,15 +6,23 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers } from '../actions/userActions'
 
-const UserListScreen = () => {
+const UserListScreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const userList = useSelector((state) => state.userList) // Fetch userList from state
   const { loading, error, users } = userList
 
+  const userLogin = useSelector((state) => state.userLogin) // Fetch userLogin from state
+  const { userInfo } = userLogin
+
   useEffect(() => {
-    dispatch(listUsers())
-  }, [dispatch])
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listUsers())
+    } else {
+      // Not logged in or Not admin then redirect to login page
+      history.push('/login')
+    }
+  }, [dispatch, history])
 
   const deleteHandler = () => {
     console.log('Delete')
