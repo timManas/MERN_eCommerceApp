@@ -41,6 +41,12 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 
+// Routes for paypal req/res
+app.get(
+  '/api/config/paypal',
+  (req, res) => res.send(process.env.PAYPAL_CLIENT_ID) // When we hit this route, we fetch this Client
+)
+
 // Error - 404 handling
 app.use(notFound)
 

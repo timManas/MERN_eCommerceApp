@@ -744,3 +744,32 @@ Q138. Once user submits payment to Paypal, paypal will send back some data to co
 
 Q139. PaymentResult comes from paypal:
 Ex: export const payOrder = (order, paymentResult) => async (dispatch, getState) => {}
+
+Q140. How to log into Paypal developer account ?
+- Go to: developer.paypal.com/developer/applications
+
+150. You will need to create two accounts
+1 x business account
+1 x personal account
+
+151. How to create an app on paypal
+- Go to Dashboard and click on "Create App"
+- Copy Client ID and copy of .env file 
+
+152. In order to implement paypal, we will to include script
+"Paypal JS SDK Script"
+- Include this script:
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+
+Note: We need to build this script dynamically from useEffect
+
+Q153. How to rename arguments ?
+const { loading: loadingPay, success: successPay, error } = orderPay
+
+Q154. Why do we need to use react-paypal-button-v2 ? 
+
+155. Makesure to install paypal button on FrontEnd
+
+156. How to install react-paypal-button-v2 ?
+- Go to frontend
+- npm i react-paypal-button-v2
