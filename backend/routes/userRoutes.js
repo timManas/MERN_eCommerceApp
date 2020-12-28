@@ -4,13 +4,14 @@ import {
   registerUser,
   getUserProfile,
   updateUserProfile,
+  getUsers,
 } from '../controllers/userController.js'
-import { protect } from '../middleware/authMiddleware.js'
+import { protect, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-// POST - register user
-router.route('/').post(registerUser)
+// POST - register user  | GET - Fetch all users for Admin
+router.route('/').post(registerUser).get(protect, admin, getUsers)
 
 // GET list of products in JSON format
 router.post('/login', authUser)
