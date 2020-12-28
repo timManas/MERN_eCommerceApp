@@ -21,6 +21,9 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAIL,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
@@ -269,6 +272,50 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     // If fetching data was not succesful
     dispatch({
       type: USER_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+// Update User .. Admin only
+export const updateUser = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    })
+
+    // Destructure twice to get the userInfo
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    // Pass token here
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    // Send DELETE request of user by name/username/password
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+
+    // Dispatch and send to Reducer
+    dispatch({
+      type: USER_UPDATE_SUCCESS, // Successfully Updates user
+    })
+
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    // If fetching data was not succesful
+    dispatch({
+      type: USER_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
