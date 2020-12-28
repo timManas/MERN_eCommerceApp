@@ -1,5 +1,9 @@
 import express from 'express'
-import { addOrderItems, getOrderById } from '../controllers/orderController.js'
+import {
+  addOrderItems,
+  getOrderById,
+  updateOrderToPaid,
+} from '../controllers/orderController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -9,5 +13,8 @@ router.route('/').post(protect, addOrderItems) // calls addOrderItems when we ge
 
 // GET - Order Id
 router.route('/:id').get(protect, getOrderById) // Gets the order by id
+
+// PUT - Updates Order after payment
+router.route('/:id/pay').put(protect, updateOrderToPaid) // Gets the order by id
 
 export default router

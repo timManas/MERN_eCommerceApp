@@ -739,3 +739,6 @@ Q136. What is LinkContainer ?
 
 Q137. This line disables the lint ?
 // eslint-disable-next-line
+
+Q138. Once user submits payment to Paypal, paypal will send back some data to confirm the payment was successful
+
