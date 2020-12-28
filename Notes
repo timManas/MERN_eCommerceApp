@@ -742,3 +742,5 @@ Q137. This line disables the lint ?
 
 Q138. Once user submits payment to Paypal, paypal will send back some data to confirm the payment was successful
 
+Q139. PaymentResult comes from paypal:
+Ex: export const payOrder = (order, paymentResult) => async (dispatch, getState) => {}
