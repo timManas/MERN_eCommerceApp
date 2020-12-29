@@ -8,6 +8,9 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_FAIL,
 } from '../constants/productConstants'
 
 export const listProducts = () => async (dispatch) => {
@@ -50,6 +53,44 @@ export const listProductDetails = (id) => async (dispatch) => {
     // If fetching data was not succesful
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+// Delete Product by Admin
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_DELETE_REQUEST,
+    })
+
+    // Destructure twice to get the userInfo
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    // Pass token here
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    // Send DELETE request for product
+    await axios.delete(`/api/products/${id}`, config)
+
+    // Dispatch and send to Reducer
+    dispatch({
+      type: PRODUCT_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    // If fetching data was not succesful
+    dispatch({
+      type: PRODUCT_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
