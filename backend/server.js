@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
@@ -7,6 +8,7 @@ import products from './data/products.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 // This is common JS Syntax
 // const express = require('express')
@@ -24,28 +26,21 @@ const app = express()
 
 app.use(express.json()) // allows application to accept JSON data in body
 
-// How to fetch from dataJSON from a specific URL
-// // GET list of products in JSON format
-// app.get('/api/products', (req, res) => {
-//   res.json(products) // Converts the product.js into json type
-// })
-
-// // GET single Product
-// app.get('/api/products/:id', (req, res) => {
-//   const product = products.find((p) => p._id === req.params.id)
-//   res.json(product)
-// })
-
 // Fetch data from Database
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/upload', uploadRoutes)
 
 // Routes for paypal req/res
 app.get(
   '/api/config/paypal',
   (req, res) => res.send(process.env.PAYPAL_CLIENT_ID) // When we hit this route, we fetch this Client
 )
+
+// Make the upload folder static
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 // Error - 404 handling
 app.use(notFound)

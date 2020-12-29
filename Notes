@@ -775,10 +775,32 @@ Q154. Why do we need to use react-paypal-button-v2 ?
 - npm i react-paypal-button-v2
 
 ::: Admin 
-
+ 
 157. This line get(protect, admin, getUsers). Will first go to protect(), then go to admin() then go to getUsers()
 How it does this is by callin in the next() function 
 
 158. How to send products back to the DB using the seeder ?
 - Run this root folder
 npm run data:import
+
+160. How does the server handle file upload ?
+- Use Multer 
+
+161. What is Multer ? 
+- Middlewaer for handling multipart/form-data
+- Used for uploading files
+
+162. How to install Multer ? 
+- Go to root and type in:
+
+163. What does path do ?
+Ex: path.extname()
+
+Q164. What is the mimetype ? 
+
+Q165. YOu need to make the uploads folder static so you user can upload images to that folder
+
+Q166. How to make a folder static in expresS ? 
+- Use path.join()
+
+167. path.join(__dirname, '/uploads') takes you the folder
