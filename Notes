@@ -778,3 +778,7 @@ Q154. Why do we need to use react-paypal-button-v2 ?
 
 157. This line get(protect, admin, getUsers). Will first go to protect(), then go to admin() then go to getUsers()
 How it does this is by callin in the next() function 
+
+158. How to send products back to the DB using the seeder ?
+- Run this root folder
+npm run data:import
