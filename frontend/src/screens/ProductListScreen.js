@@ -4,7 +4,12 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listProducts, deleteProduct } from '../actions/productActions'
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions'
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch()
@@ -19,17 +24,39 @@ const ProductListScreen = ({ history, match }) => {
     success: successDelete,
   } = productDelete
 
+  const productCreate = useSelector((state) => state.productCreate) // Delete product from state
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate
+
   const userLogin = useSelector((state) => state.userLogin) // Fetch userLogin from state
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts())
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET }) // Dispatch the reset
+
+    if (!userInfo.isAdmin) {
       // Not logged in or Not admin then redirect to login page
       history.push('/login')
     }
-  }, [dispatch, history, userInfo, successDelete])
+
+    // Redirect to the product screen if successfully created
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(listProducts())
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ])
 
   // Dispatch the Action
   const deleteHandler = (id) => {
@@ -40,9 +67,10 @@ const ProductListScreen = ({ history, match }) => {
     }
   }
 
-  const createProductHandler = (product) => {
+  const createProductHandler = () => {
     console.log('Creating Product')
-    // Creaet PRODUCT
+    // Create PRODUCT
+    dispatch(createProduct())
   }
 
   return (
@@ -59,6 +87,8 @@ const ProductListScreen = ({ history, match }) => {
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant='dange'>{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant='dange'>{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
