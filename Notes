@@ -815,3 +815,9 @@ Q168. What is morgan ?
 169. How to install morgan ?
 - Go root:
 npm i morgan
+
+
+170. Why do we need to inclde this when submitting a form ?
+Ex:   const submitHandler = (e) => {
+    e.preventDefault()          // We need to include this since we are submitting a form 
+  }
