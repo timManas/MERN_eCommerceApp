@@ -4,13 +4,14 @@ import {
   getOrderById,
   updateOrderToPaid,
   getMyOrders,
+  getOrders,
 } from '../controllers/orderController.js'
-import { protect } from '../middleware/authMiddleware.js'
+import { protect, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-// POST - Order Items
-router.route('/').post(protect, addOrderItems) // calls addOrderItems when we get a '/' post request
+// POST - Order Items || GET all orders for Admin
+router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders) // calls addOrderItems when we get a '/' post request
 
 // GET - myOrders
 router.route('/myorders').get(protect, getMyOrders) // Gets the order by id

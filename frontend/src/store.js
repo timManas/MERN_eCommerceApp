@@ -26,6 +26,7 @@ import {
   orderDetailsReducer,
   orderPayReducer,
   orderListMyReducer,
+  orderListReducer,
 } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -46,6 +47,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderListMy: orderListMyReducer,
+  orderList: orderListReducer,
 })
 
 // Fetch items from localStore if ANY

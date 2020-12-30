@@ -12,6 +12,9 @@ import {
   ORDER_LIST_MY_REQUEST,
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
+  ORDER_LIST_REQUEST,
+  ORDER_LIST_SUCCESS,
+  ORDER_LIST_FAIL,
 } from '../constants/orderConstants'
 
 // Creates an Order Action
@@ -171,6 +174,45 @@ export const listMyOrders = () => async (dispatch, getState) => {
     // If fetching data was not succesful
     dispatch({
       type: ORDER_LIST_MY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+// Fetch list of orders
+export const listOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_LIST_REQUEST,
+    })
+
+    // Destructure twice to get the userInfo
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    // Pass token here
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    // Send GET request of user by name/username/password
+    const { data } = await axios.get(`/api/orders/`, config)
+
+    // Dispatch and send to Reducer
+    dispatch({
+      type: ORDER_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    // If fetching data was not succesful
+    dispatch({
+      type: ORDER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
