@@ -7,15 +7,18 @@ import Loader from '../components/Loader'
 import axios from 'axios'
 import { listProducts } from '../actions/productActions'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  // Check for keyword for search
+  const keyword = match.params.keyword
+
   // New Methd
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList) // Displays the products from the store
   const { loading, error, products } = productList // pull loading, error and products from state
 
   useEffect(() => {
-    dispatch(listProducts())
-  }, [dispatch])
+    dispatch(listProducts(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>

@@ -4,9 +4,18 @@ import Product from '../models/productModel.js'
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}) // Find all products
+  // Check if keyword exists, find products with that keyword only
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword, // Regex expression
+          $options: 'i', // case insenstive
+        },
+      }
+    : {}
+
+  const products = await Product.find({ ...keyword }) // Find all products
   res.json(products) // Converts the product.js into json type
 })
 

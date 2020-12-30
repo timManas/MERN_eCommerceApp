@@ -22,11 +22,11 @@ import {
   PRODUCT_CREATE_REVIEW_FAIL,
 } from '../constants/productConstants'
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST }) // Sending request`
 
-    const { data } = await axios.get('/api/products')
+    const { data } = await axios.get(`/api/products?keyword=${keyword}`)
 
     // At this point, we have the product data from the backend
     dispatch({

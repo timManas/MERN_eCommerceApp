@@ -821,3 +821,8 @@ npm i morgan
 Ex:   const submitHandler = (e) => {
     e.preventDefault()          // We need to include this since we are submitting a form 
   }
+
+
+171. Why do we need to react-render ?
+
+Q172. What is req.query ?
