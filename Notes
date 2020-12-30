@@ -804,3 +804,14 @@ Q166. How to make a folder static in expresS ?
 - Use path.join()
 
 167. path.join(__dirname, '/uploads') takes you the folder
+
+::: Product Reviews, Search and More
+
+Q168. What is morgan ?
+- logger middleware
+- When someone hits a route in the backend, we can seee it logged in the console
+- See the HTTP, status code ...etc
+
+169. How to install morgan ?
+- Go root:
+npm i morgan
