@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('') // setName will fill name
@@ -34,7 +35,8 @@ const ProfileScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push('/')
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
         dispatch(listMyOrders())
       } else {
@@ -42,7 +44,7 @@ const ProfileScreen = ({ location, history }) => {
         setEmail(user.email)
       }
     }
-  }, [dispatch, history, userInfo, user]) // if you remove user in the list of dependencies it doesent show up
+  }, [dispatch, history, userInfo, user, success]) // if you remove user in the list of dependencies it doesent show up
 
   // Calls the Register Action which goes to Reducer
   const submitHandler = (e) => {

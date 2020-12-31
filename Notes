@@ -880,3 +880,31 @@ Q187. Before pushing app to heroku you will need the following:
 1. ProcFile: Tells heroku what to run for our application
 2. Add the postbuild script on the package.json field  
 "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+
+Q188. How to add Heroku as a remote repository ?
+
+189. Create a new Git repository
+- Go to root folder 
+- Must have git folder already initialized
+- Type in this line:
+heroku git:remote -a proshop2021
+git push heroku master ... or git push heroku main
+
+190. You will see "Application Error" after pushing to Heroku.
+- This is because it will take time to push
+
+191. How to access the Heroku logs /
+- Go to root of the folder:
+heroku logs
+
+192. You will see this error "Error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string."
+- This is because the .env file is NOT pushed, hence we have no connection go MongoDB since we placed it git ignore
+
+How to resolve this ?
+- Go to Heroku project on Dashboard
+- Go to Settings
+- Scroll down to 'Config Vars'
+- Add your ENV variables there
+
+193. *** ANYTIME YOU HAVE ISSUES, type in 'heroku logs'
+

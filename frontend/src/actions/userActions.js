@@ -191,6 +191,13 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_PROFILE_SUCCESS, // Successfully registers user
       payload: data,
     })
+
+    dispatch({
+      type: USER_LOGIN_SUCCESS, // Successfully registers user
+      payload: data,
+    })
+
+    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     // If fetching data was not succesful
     dispatch({
