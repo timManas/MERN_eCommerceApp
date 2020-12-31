@@ -835,3 +835,19 @@ Q174. What is react-helmet ?
 Q175. How to install react-helmet ?
 - Go to frontend and type: 
 npm i react-helmet
+
+Q176. In Prodution, you cannot do npm run dev ... so what do you do ? 
+- Build out static assets for react
+- Have backend load index.html thats built out
+
+177. What does npm run build do in the 'frontend' ?
+- Creates a build folder 
+
+178. The index.html file in the build folder is what we want to load in production
+- You need to prepare this
+
+180. Tip. 
+- If you go .env file and change NODE_ENV to 'production'
+- Then go to root and type in:
+npm start
+- Then go to localhost:5000. Then you will see the page load
