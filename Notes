@@ -851,3 +851,32 @@ Q176. In Prodution, you cannot do npm run dev ... so what do you do ?
 - Then go to root and type in:
 npm start
 - Then go to localhost:5000. Then you will see the page load
+
+181. What is the Heroku post build script ? 
+
+Q182. What is the Heroku CLI ? 
+
+Q183. How to install Heroku ? 
+- Go to root folder and type:
+brew tap heroku/brew && brew install heroku
+
+Q184. How to login into HEROKU CLU ? 
+- Go to root:
+heroku login
+- Should open up a browser automatically
+- Click on 'Log In'
+
+Q185. How to create a Heroku application ?
+- Go to root:
+heroku create <NameOFApp...Must be UNIQUE>
+Ex: heroku create proshop2021
+- It will show you the application URL && git repository for Heroku
+Ex:
+https://proshop2021.herokuapp.com/ | https://git.heroku.com/proshop2021.git
+
+Q186. How to push App to Heroku repository
+
+Q187. Before pushing app to heroku you will need the following:
+1. ProcFile: Tells heroku what to run for our application
+2. Add the postbuild script on the package.json field  
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
