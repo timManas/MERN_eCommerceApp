@@ -828,3 +828,10 @@ Ex:   const submitHandler = (e) => {
 Q172. What is req.query ?
 
 Q173. 'limit(pageSize)' - will limit the product show by the number of pageSize
+
+Q174. What is react-helmet ? 
+- Adds custom meta tags on pages/components
+
+Q175. How to install react-helmet ?
+- Go to frontend and type: 
+npm i react-helmet
