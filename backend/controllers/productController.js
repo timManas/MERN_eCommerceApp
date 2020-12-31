@@ -5,6 +5,10 @@ import Product from '../models/productModel.js'
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
+  // Paginate functionality
+  const pageSize = 10
+  const page = Number(req.query.pageNumber) || 1
+
   // Check if keyword exists, find products with that keyword only
   const keyword = req.query.keyword
     ? {
@@ -15,8 +19,12 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {}
 
-  const products = await Product.find({ ...keyword }) // Find all products
-  res.json(products) // Converts the product.js into json type
+  const count = await Product.countDocuments({ ...keyword })
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1)) // Find all products but limit it to the number of products per page
+
+  res.json({ products, page, pages: Math.ceil(count / pageSize) }) // Converts the product.js into json type
 })
 
 // @desc    Fetch Single products

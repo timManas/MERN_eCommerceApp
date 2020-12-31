@@ -826,3 +826,5 @@ Ex:   const submitHandler = (e) => {
 171. Why do we need to react-render ?
 
 Q172. What is req.query ?
+
+Q173. 'limit(pageSize)' - will limit the product show by the number of pageSize

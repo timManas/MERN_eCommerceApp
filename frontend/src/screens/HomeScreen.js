@@ -4,21 +4,24 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import axios from 'axios'
+import Paginate from '../components/Paginate'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = ({ match }) => {
   // Check for keyword for search
   const keyword = match.params.keyword
 
+  // Pagination Functionality
+  const pageNumber = match.params.pageNumber || 1
+
   // New Methd
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList) // Displays the products from the store
-  const { loading, error, products } = productList // pull loading, error and products from state
+  const { loading, error, products, page, pages } = productList // pull loading, error and products from state
 
   useEffect(() => {
-    dispatch(listProducts(keyword))
-  }, [dispatch, keyword])
+    dispatch(listProducts(keyword, pageNumber))
+  }, [dispatch, keyword, pageNumber])
 
   return (
     <>
@@ -28,13 +31,20 @@ const HomeScreen = ({ match }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row>
+            {products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ''}
+          />
+        </>
       )}
     </>
   )
