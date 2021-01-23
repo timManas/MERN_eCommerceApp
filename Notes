@@ -1,4 +1,91 @@
 ===================================================================================================
+Create a Full Stack BoilerPlate - React, Express, Node, MongoDB, Heroku  
+===================================================================================================
+
+1. Create Folder to put Project In
+2. Create frontEnd folder by:
+    npx create-react-app nameOfYourApp 
+2b. DELETE the .git files (.git & .gitignore ... otherwise you'll get erros)
+3. Create backend folder (Just make it)
+4. Initialize package.json by typing:
+-   npm init
+- Follow the instructions on Q38.
+
+5. Install express
+6. Install mongoose
+7. Install dotenv 
+8. Install concurrently
+9. Install nodemon
+10. Install path
+- npm i express
+- npm i mongoose
+- npm i dotenv
+- npm i concurrently
+- npm i nodemon 
+
+10. Set up package.json to run FE + BE together
+Add this to your package.json:
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+
+11. Set Backend to use ES6 Modules
+- Open package.json and add this line below  "description" & "main"  key/value pair
+"type": "module",
+
+12. Create .env file
+- Place this code there 
+MONGO_URI=mongodb+srv://timmanas:<INSERTPASSWORDHERE>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
+
+13. Create server.js file in BE folder
+> Add base code
+
+14. Set up .gitignore
+15. Push to Git
+
+16. Install Heroku
+- Go to root:
+brew tap heroku/brew && brew install heroku
+
+
+
+17. Create the node_modules folder 
+- Run this in frontend folder
+npm run build
+
+
+18. Login into Heroku CLI
+- Type in Heroku login
+ heroku login
+- Should open up a browser automatically
+- Click on ‘Log In’
+
+
+19. Create a Heroku Application
+- Go to Root:
+heroku create <NameOFApp...Must be UNIQUE>
+
+20. Create new Heroku Repository
+Type in:
+heroku git:remote -a <NameOfApp …. ex: proshop2021>
+
+21. Add Config Vars in Heroku
+- Add the MONGO_URI, PORT, NODE_ENV = Production
+
+22. Add ProcFile in rootFolder:
+web: node backend/server.js
+
+23. Add the postbuild script on the package.json field  
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+
+24. Push Code to Heroku
+git push heroku main
+
+
+===================================================================================================
 Questions 
 ===================================================================================================
 
@@ -93,7 +180,6 @@ Q42. How to run node backend Server ?
 - Make sure you package.json initialized  (Take a look at #38 above)
 - Create Code to listen in at Port:5000 (Ex: app.listen(5000, console.log('Server is running')))
 - Type the following in the root folder:
-- Type in:
   npm start
 ** Note: You will need to start front & backend seperately ... Unless you set it up in package.json
  > Take a look at the package.json on the root folder AND also at the frontend Folder
@@ -335,10 +421,31 @@ git push heroku master ... or git push heroku main
 heroku logs
 
 
+194. How to convert from commonJS to ES6 (ECMA Script module) module syntax ? 
+- Has to be above 14.6.0
+- Two ways to do this:
+a. Change file extention to '.mjs'
+b. Add this line to package.json
+{
+  "type": "module"
+}
+
+
+
+===================================================================================================
+Tips And Tricks 
+===================================================================================================
+
+- Using "import express from 'express' ", does not work unless you add ES6 module instead.
+> Hence if you tried, const express = require('express'), that should work
+
+
+
 
 ===================================================================================================
 Notes 
 ===================================================================================================
+
 1. How to create a BoilerPlate React App ?
 - Use the CreateReactApp via https://reactjs.org/docs/create-a-new-react-app.html
 - To create a project, run:
