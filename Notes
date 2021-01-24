@@ -24,24 +24,31 @@ Create a Full Stack BoilerPlate - React, Express, Node, MongoDB, Heroku
 - npm i nodemon 
 
 10. Set up package.json to run FE + BE together
-Add this to your package.json:
+Add this to your package.json in ROOT Folder:
 - "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
 
-1.  Set Backend to use ES6 Modules
+11.  Set Backend to use ES6 Modules
 - Open package.json and add this line below  "description" & "main"  key/value pair:
 - "type": "module",
 
+
 12. Create .env file
 - Place this code there:
-- MONGO_URI=mongodb+srv://timmanas:<INSERTPASSWORDHERE>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
+- NODE_ENV = development
+- PORT = 5000
+- MONGO_URI=mongodb+srv://timmanas:<PASSWORD_HERE>@cluster0.9czdc.mongodb.net/<DBNAMEOFYOURAPP ex: proshop>?retryWrites=true&w=majority
+- JWT_SECRET = abc123
+- PAYPAL_CLIENT_ID = <INSERT YOUR CLIENT ID HERE>
+
 
 13. Create server.js file in BE folder
-> Add base code
+> Add base code (Located @Bottom of this README)
 
 14. Set up .gitignore
 15. Push to Git
@@ -50,32 +57,33 @@ Add this to your package.json:
 - Go to root:
 - brew tap heroku/brew && brew install heroku
 
-17. Create the node_modules folder 
-- Run this in frontend folder:
-- npm run build
-
-
-18. Login into Heroku CLI
+17. Login into Heroku CLI
 - Type in:
 - heroku login
 - Should open up a browser automatically ... then Click on ‘Log In’
 
-19.  Create a Heroku Application
+18.  Create a Heroku Application
 - Go to Root:
 - heroku create <NameOFApp...Must be UNIQUE>
 
-20. Create new Heroku Repository
+19. Create new Heroku Repository
 - Type in:
 - heroku git:remote -a <NameOfApp …. ex: proshop2021>
 
-21. Add Config Vars in Heroku
-- Add the MONGO_URI, PORT, NODE_ENV = Production
+20. Add Config Vars in Heroku
+- Add the following manually:
+- MONGO_URI
+- PORT
+- NODE_ENV = Production
 
-22. Add ProcFile in rootFolder:
+21. Add ProcFile in rootFolder:
 - web: node backend/server.js
 
-23. Add the postbuild script on the package.json field  
+22. Add the postbuild script on the package.json field  
 - "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+
+23. Check if there anyhing which need to be pushed to git & push if any:
+- git status
 
 24. Push Code to Heroku
 - git push heroku main
@@ -1350,3 +1358,69 @@ How to resolve this ?
 
 193. *** ANYTIME YOU HAVE ISSUES, type in 'heroku logs'
 
+
+
+
+===================================================================================================
+Base Code for sever.js
+===================================================================================================
+
+
+
+
+import path from 'path'
+import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+// Initialize Dot Env File
+dotenv.config()
+
+// Initialize Express
+const app = express()
+
+// Initialize MongoDB
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+    })
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+  } catch (error) {
+    console.log(`Error: ${error.message}`)
+    process.exit(1) // exit(1) - means you return with error
+  }
+}
+
+// Connect Backend to MongoDB
+connectDB()
+
+// Make the upload folder static
+const __dirname = path.resolve()
+
+// Initialize the Routes
+if (process.env.NODE_ENV === 'production') {
+  // Set the 'build' folder as a static folder
+  // Why ? So we can access the build folder and load the index.html
+  app.use(express.static(path.join(__dirname, '/frontend/build'))) // set frontend folder as a static folder
+
+  // Send the index.html file if on Production
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running ....')
+  })
+}
+
+// Set up backend to listen to PORT 5000
+const PORT = process.env.PORT || 5000
+app.listen(
+  PORT,
+  console.log(
+    `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
+  )
+)
