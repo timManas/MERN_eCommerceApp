@@ -20,8 +20,8 @@ Create a Full Stack BoilerPlate - React, Express, Node, MongoDB, Heroku
 - npm i express
 - npm i mongoose
 - npm i dotenv
-- npm i concurrently
-- npm i nodemon 
+- npm i -D concurrently
+- npm i -D nodemon 
 
 10. Set up package.json to run FE + BE together
 Add this to your package.json in ROOT Folder:
@@ -89,6 +89,46 @@ Add this to your package.json in ROOT Folder:
 - git push heroku main
 
 
+
+===================================================================================================
+HEADER & Footer BoilerPlate 
+===================================================================================================
+
+Install the following:
+react-bootstrap - Uses Containers
+react-router-dom - Uses BrowserRouter, Route
+
+
+Instructions:
+1. Download BootStrap Theme on Bootswatch
+- Drag and Drop this to the frontend/src folder
+- Import files in index.js
+
+2. Create Header
+3. Create Footer
+4. Create HomeScreen & OtherScreen
+Ex: 
+  return (
+    <BrowserRouter>
+      <Header />
+      <main>
+        <Container>
+          <Route path='/loginscreen' component={LoginScreen} />
+          <Route path='/' component={HomeScreen} exact />
+        </Container>
+      </main>
+      <Footer />
+    </BrowserRouter>
+  )
+
+5. Configure App.js to add Header, Footer, HomeScreen
+6. Set up Routes on App.js
+
+Notes:
+- App.js will contain parent Tag "BrowserRouter" which will contain the other routes
+- If you are dealing with FE, you will definitely need to import react
+
+
 ===================================================================================================
 Questions 
 ===================================================================================================
@@ -112,8 +152,10 @@ Note: In our case we used:
 - Go to browser under http://localhost:3000
 
 8. How to install BootSwatch and use them from Bootswatch ?
-- Download theme on bootswatch under "bootstrap.min"
-- Drag and Drop to src folder 
+- Download theme on bootswatch
+- Choose theme
+- Download version "bootstrap.min.css"
+- Drag and Drop to src folder of frontend 
 - Go into index.js and import using:
     import './bootstrap.min.css'
 
@@ -1364,9 +1406,6 @@ How to resolve this ?
 ===================================================================================================
 Base Code for sever.js
 ===================================================================================================
-
-
-
 
 import path from 'path'
 import express from 'express'
