@@ -91,10 +91,10 @@ Add this to your package.json in ROOT Folder:
 
 
 ===================================================================================================
-HEADER & Footer BoilerPlate 
+ROUTER & HEADER & Footer BoilerPlate 
 ===================================================================================================
 
-Install the following:
+Install the following in the FRONTEND FOLDER:     <--- WATCH OUT
 react-bootstrap - Uses Containers
 react-router-dom - Uses BrowserRouter, Route
 
@@ -127,6 +127,26 @@ Ex:
 Notes:
 - App.js will contain parent Tag "BrowserRouter" which will contain the other routes
 - If you are dealing with FE, you will definitely need to import react
+- DO NOT DOWNLOAD another version of react ...otherwise you will get  "Error: Invalid hook call. Hooks can only be called inside of the body of a function component."
+  > To fix this, delete your node_modules folder and reinstall all the imports (ex: npm i express ..etc)
+- react-bootstrap automatically connects to bootstrap.min.css   ....
+
+
+===================================================================================================
+CRUD Operations 
+===================================================================================================
+
+Install the following in the ROOT Folder:
+axios: Allows us to do CRUD operations to DB ASYNC
+
+Instructions.
+Read: 
+1. Create Schema using mongoose
+2. Create Model using Schema
+3. Find singleObject using "findById(_id of Object ... check MongoCompass)"
+
+Notes
+- Dont forget to add the await and async  to method
 
 
 ===================================================================================================
@@ -1463,3 +1483,8 @@ app.listen(
     `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
   )
 )
+
+
+
+
+
