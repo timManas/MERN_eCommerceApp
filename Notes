@@ -40,11 +40,11 @@ Add this to your package.json in ROOT Folder:
 
 12. Create .env file
 - Place this code there:
-- NODE_ENV = development
-- PORT = 5000
-- MONGO_URI=mongodb+srv://timmanas:<PASSWORD_HERE>@cluster0.9czdc.mongodb.net/<DBNAMEOFYOURAPP ex: proshop>?retryWrites=true&w=majority
-- JWT_SECRET = abc123
-- PAYPAL_CLIENT_ID = <INSERT YOUR CLIENT ID HERE>
+NODE_ENV = development
+PORT = 5000
+MONGO_URI=mongodb+srv://timmanas:<PASSWORD_HERE>@cluster0.9czdc.mongodb.net/<DBNAMEOFYOURAPP ex: proshop>?retryWrites=true&w=majority
+JWT_SECRET = abc123
+PAYPAL_CLIENT_ID = <INSERT YOUR CLIENT ID HERE>
 
 
 13. Create server.js file in BE folder
@@ -80,7 +80,7 @@ Add this to your package.json in ROOT Folder:
 - web: node backend/server.js
 
 22. Add the postbuild script on the package.json field  
-- "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+- "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 
 23. Check if there anyhing which need to be pushed to git & push if any:
 - git status
@@ -95,8 +95,8 @@ ROUTER & HEADER & Footer BoilerPlate
 ===================================================================================================
 
 Install the following in the FRONTEND FOLDER:     <--- WATCH OUT
-react-bootstrap - Uses Containers
-react-router-dom - Uses BrowserRouter, Route
+react-bootstrap - Uses Containers, Cards
+react-router-dom - Uses BrowserRouter, Route, Link
 
 
 Instructions:
@@ -138,15 +138,50 @@ CRUD Operations
 
 Install the following in the ROOT Folder:
 axios: Allows us to do CRUD operations to DB ASYNC
+express-async-handler: Allos us to do handle ASYNC Calls
 
-Instructions.
-Read: 
+# Instructions.
+Prequistes
 1. Create Schema using mongoose
 2. Create Model using Schema
-3. Find singleObject using "findById(_id of Object ... check MongoCompass)"
+
+
+# Read: 
+- Find singleObject using "findById(_id of Object ... check MongoCompass)"    
+
+# Create:
+- Create new Object by using ".create()"  or ".insertMany()"
+  
+# Update:
+- Update a new object by using "User.save()" ...which saves it automatically to DB
+
+# Delete 
+- Delete an object  by using  userSchema.remove()
+
+# Notes
+- Dont forget to add the await and async  to method
+
+
+===================================================================================================
+CSS Operations 
+===================================================================================================
 
 Notes
-- Dont forget to add the await and async  to method
+- You can copy/paste the code from bootswatch directly into your code and you will get the same destroying
+
+- You can pass objects(i.e String from Tag Element to React Component)
+Ex: 
+On FrontEnd   - <Product product={product} test='HelloWorld' />
+
+Then on Component you can get those values: 
+const Product = ({ product, test }) => {
+  console.log(`property product: ${test}`)
+  console.log(`property test: ${test}`)
+}
+
+
+
+
 
 
 ===================================================================================================
@@ -1483,6 +1518,98 @@ app.listen(
     `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
   )
 )
+
+
+===================================================================================================
+Base Code for CRUD 
+===================================================================================================
+
+import express from 'express'
+import asyncHandler from 'express-async-handler'
+import mongoose from 'mongoose'
+
+// Declare Schema using Mongoose
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
+  {
+    timestamps: true,
+  }
+)
+
+const User = mongoose.model('User', userSchema)
+
+const userTim = {
+  name: 'NEW CREATE USER',
+  email: 'HELLOwORLD@example.com',
+  password: '12345',
+}
+
+// CREATE
+export const createUser = asyncHandler(async () => {
+  console.log('CREATE')
+  const userExists = await User.findOne({ email: 'HELLOwORLD@example.com' })
+  if (userExists) {
+    console.log('User already Exists ...cannot add New User')
+  } else {
+    const user = User.create(userTim)
+    if (user) {
+      console.log('Success Creating User')
+    }
+  }
+})
+
+// READ
+export const readUser = asyncHandler(async () => {
+  const singleUser = await User.findById(process.env.ID)
+  console.log('\nREAD')
+  console.log(`Single User: ${singleUser} \n`)
+})
+
+// UPDATE
+export const updateUser = asyncHandler(async () => {
+  const singleUser = await User.findById(process.env.ID)
+  console.log('\nUPDATE')
+  if (singleUser) {
+    singleUser.name = 'UpdatedUserName'
+    await singleUser.save()
+    console.log('Updated User')
+  }
+})
+
+// DELETE
+export const deleteUser = asyncHandler(async () => {
+  try {
+    console.log('\nDELETE')
+    const user = await User.findOne({ email: 'HELLOwORLD@example.com' })
+    if (user) {
+      user.deleteOne()
+      console.log('Successfully Deleted User')
+    } else {
+      console.log('Cannot delete ...user does not exists')
+    }
+  } catch (error) {
+    console.log('Error Deleting')
+  }
+})
 
 
 
