@@ -131,7 +131,7 @@ Notes:
 - DO NOT DOWNLOAD another version of react ...otherwise you will get  "Error: Invalid hook call. Hooks can only be called inside of the body of a function component."
   > To fix this, delete your node_modules folder and reinstall all the imports (ex: npm i express ..etc)
 - react-bootstrap automatically connects to bootstrap.min.css   ....
-- LinkContainers almost always have a react-bootstrap component as its Child Element
+
 
 ===================================================================================================
 CRUD Operations 
@@ -1286,7 +1286,49 @@ Q134. Why do we need to call e.preventDefault()  on eventHandler since its a for
 Q135. How to move from one page to another ?
 - use history.push()
 
+135b. What are Links ?
+- Link to another page
+- By default, they are equivalent to anchor tags 'a'
+- However, they do not RELOAD the page. So our apps stays as SPA
+
+Example: This will display an a tag
+        <Link to={`/product/${product._id}`}>
+          <Card.Title as='div' className='text-danger'>
+            <strong>Link with CardTitle as div</strong>
+          </Card.Title>
+        </Link>
+
+Example: This will display a tag 
+        <Link to={`/product/${product._id}`}>
+          <strong>Link Default</strong>
+        </Link>
+
+
 Q136. What is LinkContainer ? 
+- LINK CONTAINERS TAKE ON THE THEIR CHILD ELEMENT AND ADD A LINK TO IT ...
+Example: This will display a div  
+        <LinkContainer to={`/product/${product._id}`}>
+          <Card.Title as='div' className='text-info'>
+            <strong>LinkContainer with CardTitle as div</strong>
+          </Card.Title>
+        </LinkContainer>
+
+Example: This will display a tag
+        <LinkContainer to={`/login`}>
+          <Card.Title className='text-info' as='a'>
+            <strong>LinkContainer as a </strong>
+          </Card.Title>
+        </LinkContainer>
+
+Example: This will display as strong tag with a link
+        <LinkContainer to={`/login`}>
+          <strong>LinkContainer by strong</strong>
+        </LinkContainer>
+
+Example: This will display as a bold tag with a link
+        <LinkContainer to={`/login`}>
+          <b>LinkContainer by b</b>
+        </LinkContainer>
 
 Q137. This line disables the lint ?
 // eslint-disable-next-line
