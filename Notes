@@ -95,8 +95,9 @@ ROUTER & HEADER & Footer BoilerPlate
 ===================================================================================================
 
 Install the following in the FRONTEND FOLDER:     <--- WATCH OUT
-react-bootstrap - Uses Containers, Cards
+react-bootstrap - Uses Containersm
 react-router-dom - Uses BrowserRouter, Route, Link
+react-router-bootstrap - Uses LinkContainer
 
 
 Instructions:
@@ -130,7 +131,7 @@ Notes:
 - DO NOT DOWNLOAD another version of react ...otherwise you will get  "Error: Invalid hook call. Hooks can only be called inside of the body of a function component."
   > To fix this, delete your node_modules folder and reinstall all the imports (ex: npm i express ..etc)
 - react-bootstrap automatically connects to bootstrap.min.css   ....
-
+- LinkContainers almost always have a react-bootstrap component as its Child Element
 
 ===================================================================================================
 CRUD Operations 
@@ -753,6 +754,10 @@ Ex: /product/1  Or /product/2 Or /product/3
 using bootstrap
 
 Q29. What is the difference between Link vs LinkContainer ?? 
+> GOOD FUCKING QUESTION .... 
+Link - Light Weight. Has children which are like Text
+LinkContainer - Middle Weight. Has children which are react-bootstrap components
+Router - Heavey Weight, uploads components to the screen
 
 Q30. What happens when you type in a path which is not defined in the Router?
 Ex: http://localhost:3000/helloWorld
@@ -883,8 +888,7 @@ Client -> go to localhost:3000 -> Gets Website > Website makes HTTP request for 
 - Application level state (Component, form)
 
 Q49. What is the useState hook in react ? 
-- It is to use state in functional components
-- 
+- It us to use state in functional components
 Ex: const [products, setProducts] = useState([])
 "products" is what we want to call the state
 "setProducts" is the function we want to call to manipulate the state
