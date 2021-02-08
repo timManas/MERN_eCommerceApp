@@ -182,6 +182,56 @@ const Product = ({ product, test }) => {
 
 
 
+===================================================================================================
+BACKEND ROUTING Operations 
+===================================================================================================
+
+You will need to:
+1. Set up routes in server.js
+Ex: 
+app.use('/api/products', productRoutes)
+
+2. Create backend Routes page (aka ProductRoutes) which gets all API Rotues to backend
+Ex:
+import express from 'express'
+import { getProducts, getProductById } from './productController.js'
+
+const router = express.Router()
+// GET Product Routes
+router.route('/').get(getProducts)
+router.route('/:id').get(getProductById)
+export default router
+
+3. Create Controller which performs the fetch to the DB
+Ex: 
+// @desc    Fetch all products
+// @route   GET /api/products
+// @access  Public
+export const getProducts = async (req, res) => {
+  const products = await Product.find()
+  res.json(products)
+}
+
+// @desc    Fetch Single products
+// @route   GET /api/products/:id
+// @access  Public
+export const getProductById = async (req, res) => {
+  const product = await Product.findById(req.params.id)
+
+  if (product) {
+    res.json(product)
+  } else {
+    res.status(404)
+    res.json({ error: '404 - Product Not found' })
+  }
+}
+
+How to Test ?
+1. Go to Postman 
+2. Set up GET call:
+Find All Products - {{URL}}/api/products
+Find Single Product - {{URL}}/api/products/5feb603d4e11f0100a82d272
+3. Notice JSON Response
 
 
 
@@ -1306,6 +1356,7 @@ Example: This will display a tag
 
 Q136. What is LinkContainer ? 
 - LINK CONTAINERS TAKE ON THE THEIR CHILD ELEMENT AND ADD A LINK TO IT ...
+- They make their "Containers" as "Links" .... capiche ? 
 Example: This will display a div  
         <LinkContainer to={`/product/${product._id}`}>
           <Card.Title as='div' className='text-info'>
