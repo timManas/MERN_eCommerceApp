@@ -233,7 +233,36 @@ Find All Products - {{URL}}/api/products
 Find Single Product - {{URL}}/api/products/5feb603d4e11f0100a82d272
 3. Notice JSON Response
 
+===================================================================================================
+FE make Calls to BE to fetch Produts 
+===================================================================================================
 
+You will Need:
+1. Download axios on frontend
+2. Set up proxy in package.json in frontend folder
+Ex: 
+ "proxy": "http://localhost:5000",
+
+3. Import useState & useEffect from react on HomeScreen
+4. Set up UseState & useEffect
+
+Ex: 
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('/api/products')
+      console.log('Data: ' + data)
+      setProducts(data)
+    }
+
+    fetchProducts()
+  }, [])
+
+Notes
+- You need useState to set the value of products
+- You need useEffect to change the screen if any of the Dependencies changes
+- Having a blank Dependencies (i.e '[]') will invoke useEffect if page loads
 
 ===================================================================================================
 Questions 
