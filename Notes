@@ -302,7 +302,8 @@ Notes
 - In Components we fire off the  Actions > Reducers > Store ....
 - Remember , Reducer takes in Action & State
 - axios will return a get response. (i.e headers, data, status, statusText, config, request)
-
+- match will return the params ON THE FRONT End
+Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603d4e11f0100a82d273"
 
 
 ===================================================================================================
@@ -902,6 +903,14 @@ Router - Heavey Weight, uploads components to the screen
 Q30. What happens when you type in a path which is not defined in the Router?
 Ex: http://localhost:3000/helloWorld
 - Brings up an empty Page with No components
+
+30b. What is match ? 
+- Match object contains information about how a <Route path> matched the URL
+- Match contains the following properties
+> params: (object)key/value pair parsed from the URL
+> isExact: (boolean) TRUE if entire URL was matched
+> path: (string) the path pattern used to match. Useful for building nested <Route>s
+> url: (string) the matched portion of the URL. Useful for building nested <Links>s
 
 Q31. How does product page know which id is sent ?
 - Its in the URL being passed by the Router
