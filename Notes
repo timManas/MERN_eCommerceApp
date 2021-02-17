@@ -307,6 +307,51 @@ Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603
 
 
 ===================================================================================================
+Authenticaiton  
+===================================================================================================
+
+What you will need ?
+- bcrypt
+- jsonwebtoken
+
+Steps
+Setup Controllers
+Setup Authentication using Mongooose findById()
+Create JSON WebToken
+Generate WebToken in Controller
+Create protective middleware in Routes
+Decode & Verify the JWT 
+If Verified User, fetch the User Profile
+
+Notes
+- Sign the JWT with a secret Key
+- You will need to 'verify' the JWT using 'verify' and JWT_SECRET
+
+
+
+===================================================================================================
+Tips And Tricks 
+===================================================================================================
+
+- Using "import express from 'express' ", does not work unless you add ES6 module instead.
+> Hence if you tried, const express = require('express'), that should work
+- To print our an object try using this:
+      console.log(JSON.stringify(YOUR_OBJECT, null, 4))
+- MAKE SURE THAT Routes Setup in server.js OCCUR before "app.get('/', (req, res) => {}" 
+Ex: 
+app.use('/api/products', productRoutes)
+
+Commands to install Dependencies
+- npm i bcryptjs colors dotenv express express-async-handler jsonwebtoken mongoose morgan multer
+- npm i react-bootstrap react-dom react-helmet react-paypal-button-v2 react-redux react-router-bootstrap react-router-dom redux redux-devtools-extension redux-thunk
+
+- How to kill  Servers
+Type in:
+sudo lsof -i :5000
+kill -9 PID#
+
+
+===================================================================================================
 Questions 
 ===================================================================================================
 
@@ -664,26 +709,7 @@ b. Add this line to package.json
 
 
 
-===================================================================================================
-Tips And Tricks 
-===================================================================================================
 
-- Using "import express from 'express' ", does not work unless you add ES6 module instead.
-> Hence if you tried, const express = require('express'), that should work
-- To print our an object try using this:
-      console.log(JSON.stringify(YOUR_OBJECT, null, 4))
-- MAKE SURE THAT Routes Setup in server.js OCCUR before "app.get('/', (req, res) => {}" 
-Ex: 
-app.use('/api/products', productRoutes)
-
-Commands to install Dependencies
-- npm i bcryptjs colors dotenv express express-async-handler jsonwebtoken mongoose morgan multer
-- npm i react-bootstrap react-dom react-helmet react-paypal-button-v2 react-redux react-router-bootstrap react-router-dom redux redux-devtools-extension redux-thunk
-
-- How to kill  Servers
-Type in:
-sudo lsof -i :5000
-kill -9 PID#
 
 ===================================================================================================
 Notes 
@@ -1809,9 +1835,12 @@ export const deleteUser = asyncHandler(async () => {
 
 
 
+===================================================================================================
+BFinal Questions
+===================================================================================================
 
 
-Final Questions
+
 
 1. BackEnd
 - How does Mongoose know if connection is open ?
