@@ -307,32 +307,37 @@ Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603
 
 
 ===================================================================================================
-Authenticaiton  
+BackEnd - Authenticaiton  
 ===================================================================================================
 
-What you will need ?
-- bcrypt  
+What you will need ? Install the following in the root folder
+- bcryptjs  
 - jsonwebtoken
 
 Steps
-1. Setup Controllers
-2. Setup Authentication 
-- Set up UserRoutes 
+------  Authenticates User 
+1. Create UserModel
+
+2. Set up UserRoutes 
 - Add userRoutes on server.js 
-- set express to accept JSON raw data in the request body using (app.use(express.json()))
-- Set up UserController (i.e findOne(email))
-- set up matchPassword verification using bcrypt in userModel
 
-3. Create JSON WebToken
+3. Set up UserController (i.e findOne(email))
+
+4. Set up matchPassword verification using bcrypt in userModel
+
+5. Create JSON WebToken
 - generate WebToken by signing it with JWT_SECRET
-
-4. Generate WebToken in Controller
 - Add token generation  to the res.json()
 
-5. Create protective middleware in Routes
-- Create authMiddleware
+6. Set express to accept JSON raw data in the request body using (app.use(express.json()))
 
-6. Decode & Verify the JWT 
+----- Authorizes User using WebToken
+7. Create protective middleware in Routes
+
+8. Create authMiddleware
+- Create protect 
+
+9. Decode & Verify the JWT 
   If Verified User, fetch the User Profile
 
 
