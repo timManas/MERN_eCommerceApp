@@ -359,6 +359,28 @@ router.route('/:id').get(getProductById)
 > Use req.body.xyz (ex: req.body._id or req.body.email)
 - app.use(express.json()) will allow us to use JSON data in the request body
 
+
+===================================================================================================
+FE Authentication   
+===================================================================================================
+
+Steps
+- Create constants
+- Create Reducer
+- Create Actions
+- Add Reducer to store.js
+- Create LoginScreen
+- Add Route for Login in App.js
+- Modify Header to account for changes & Route to LoginScreen
+
+Question
+1. What part is responsible for bringing the user back to the homepage on sign in 
+> This line : 
+ const redirect = location.search ? location.search.split('=')[1] : '/'
+2. What is location & history ? 
+3. What is history.push() ?
+
+
 ===================================================================================================
 Tips And Tricks 
 ===================================================================================================
@@ -1989,3 +2011,16 @@ Misc ?
 
 
 
+
+===================================================================================================
+Best Practices
+===================================================================================================
+
+1. Set up Base Application
+2. Create & Push to Git Repo
+3. Create & Push to Heroku Repo
+
+For EACH functionality 
+1. Setup the backend Functionality
+2. Set up Middleware if required
+3. Setup the frontEnd Functionality
