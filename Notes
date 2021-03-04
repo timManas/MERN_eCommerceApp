@@ -317,28 +317,31 @@ What you will need ? Install the following in the root folder
 Steps
 ------  Authenticates User 
 1. Create UserModel
+- Setup match password
+- Setup password hashing
 
-2. Set up UserRoutes 
-- Add userRoutes on server.js 
+2. Set up matchPassword verification using bcrypt in userModel
 
-3. Set up UserController (i.e findOne(email))
-
-4. Set up matchPassword verification using bcrypt in userModel
-
-5. Create JSON WebToken
+3. Create JSON WebToken 
 - generate WebToken by signing it with JWT_SECRET
 - Add token generation  to the res.json()
 
-6. Set express to accept JSON raw data in the request body using (app.use(express.json()))
+4. Set up UserController to authenticate user (i.e findOne(email))
+5. Create UserRoutes 
+
+6. Add userRoutes on server.js 
+
+7. Set express to accept JSON raw data in the request body using (app.use(express.json()))
+
+
+
 
 ----- Authorizes User using WebToken
-7. Create protective middleware in Routes
-
-8. Create authMiddleware
+8. Create authMentication middleware
 - Create protect 
 
-9. Decode & Verify the JWT 
-  If Verified User, fetch the User Profile
+9. Setup fetching UserProfile once user is authenticated in userController
+
 
 
 Notes
