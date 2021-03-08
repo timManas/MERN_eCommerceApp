@@ -29,7 +29,7 @@ const RegisterScreen = ({ location, history }) => {
 
   // Calls the Register Action which goes to Reducer
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault() // PREVENTS REFRESH ACTION from happening
 
     // Verify password First before registering
     if (password !== confirmPassword) {
