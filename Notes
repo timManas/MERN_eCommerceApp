@@ -306,6 +306,11 @@ Notes
 Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603d4e11f0100a82d273"
 
 
+Resources
+https://react-redux.js.org/introduction/quick-start
+https://react-bootstrap.github.io/components/alerts/
+
+
 ===================================================================================================
 BackEnd - Authenticaiton  
 ===================================================================================================
