@@ -398,6 +398,19 @@ Steps
 FE  Registration
 ===================================================================================================
 
+Steps
+1. Create Constants
+2. Create reducer in userReducer 
+3. Create action in userActions
+4. Create Register screen
+
+Notes
+- When registering new user in the userActions, dont forget to add 
+    dispatch({
+      type: USER_LOGIN_SUCCESS, // Successfully logs in user
+      payload: data,
+    })
+ > This will make the username appear in the header =)
 
 ===================================================================================================
 Tips And Tricks 
