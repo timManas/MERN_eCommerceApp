@@ -361,6 +361,9 @@ router.route('/:id').get(getProductById)
 - How to access the contents of the GET/POST request ?
 > Use req.body.xyz (ex: req.body._id or req.body.email)
 - app.use(express.json()) will allow us to use JSON data in the request body
+- *** WHY DO WE USE "protect" component ?
+  > It takes in the Bearer Token, modifies the req.user 
+  > But why though ? So that we only pass the token instead of the user credetials
 
 
 ===================================================================================================
@@ -436,6 +439,16 @@ kill -9 PID#
 - On Postman Authorization, instead of having to manually copy the token and entering it to the header of 'api/user/profile'
 > We can use Bearer Token under "Authentication"
 How ?
+
+- Error Handling
+> If you throw this error "throw new Error('User already exists')"
+> This will throw a regular html response back to the client with status code 500
+>  To customize this error you can add the following:
+    res.status(400)
+    res.send('User Already ExistsX')
+    throw new Error('User already exists')
+> Then on the client you will see the error you do this: 
+    console.log('Error::: ' + error.response.data)
 
 Example:
 1. Create a POST /api/users/login  (This allows user to login)
