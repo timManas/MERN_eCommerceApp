@@ -422,6 +422,11 @@ Shopping Cart
 Steps
 . On product page, Add a button "Add to cart"
 . Create CartScreen.js
+  - Add Constants
+  - Add Actions
+  - Add Reducers
+. Add Reducer to store.js
+. Add cartItemsToStorage to store items locally in cache 
 . Add CartScreen to App.js
 
 
@@ -450,6 +455,10 @@ kill -9 PID#
 - On Postman Authorization, instead of having to manually copy the token and entering it to the header of 'api/user/profile'
 > We can use Bearer Token under "Authentication"
 How ?
+
+- How to make image go to border on Cards ?
+Remove the p-3
+<Card className='my-3  text-white bg-primary'>
 
 - Error Handling
 > If you throw this error "throw new Error('User already exists')"
