@@ -366,6 +366,9 @@ router.route('/:id').get(getProductById)
   > But why though ? So that we only pass the token instead of the user credetials
 
 
+Documentation
+https://www.npmjs.com/package/jsonwebtoken
+
 ===================================================================================================
 FE Authentication   
 ===================================================================================================
@@ -429,7 +432,25 @@ Steps
 . Add cartItemsToStorage to store items locally in cache 
 . Add CartScreen to App.js
 
+===================================================================================================
+Paypal
+===================================================================================================
 
+Need to install in frontend:
+react-paypal-button-v2
+
+Steps
+- Create Backend: OrderRoutes, OrderController, OrderModel
+
+- Add paypal request response on server.js
+// Routes for paypal req/res
+app.get(
+  '/api/config/paypal',
+  (req, res) => res.send(process.env.PAYPAL_CLIENT_ID) // When we hit this route, we fetch this Client
+)
+
+- Create FrontEnd: orderAction, orderReducers, orderConstants, store
+- Add Routes to App.js
 
 ===================================================================================================
 Tips And Tricks 
