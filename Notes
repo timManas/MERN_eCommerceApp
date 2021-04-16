@@ -11,15 +11,18 @@ Create a Full Stack BoilerPlate - React, Express, Node, MongoDB, Heroku
 - npm init
 - Follow the instructions on Q38.
 
+In the main folder (Not frontend Folder): 
 5. Install express
 6. Install mongoose
 7. Install dotenv 
 8. Install concurrently
 9. Install nodemon
 10. Install path
+11. Install morgan
 - npm i express
 - npm i mongoose
 - npm i dotenv
+- npm i morgan
 - npm i -D concurrently
 - npm i -D nodemon 
 
@@ -37,6 +40,8 @@ Add this to your package.json in ROOT Folder:
 - Open package.json and add this line below  "description" & "main"  key/value pair:
 - "type": "module",
 
+11b. Add morgan to the server.js file 
+- app.use(morgan('dev'))
 
 12. Create .env file
 - Place this code there:
