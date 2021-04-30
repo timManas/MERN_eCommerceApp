@@ -238,6 +238,9 @@ Find All Products - {{URL}}/api/products
 Find Single Product - {{URL}}/api/products/5feb603d4e11f0100a82d272
 3. Notice JSON Response
 
+Notes
+https://www.npmjs.com/package/jsonwebtoken
+
 ===================================================================================================
 FE make Calls to BE to fetch Produts 
 ===================================================================================================
@@ -456,6 +459,10 @@ app.get(
 
 - Create FrontEnd: orderAction, orderReducers, orderConstants, store
 - Add Routes to App.js
+
+Notes:
+- Where to find the Paypal email/password for Checkout ?
+> Go to dev paypal > Accounts > Look at the personal account
 
 ===================================================================================================
 Tips And Tricks 
