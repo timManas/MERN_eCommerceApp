@@ -312,6 +312,9 @@ Notes
 - axios will return a get response. (i.e headers, data, status, statusText, config, request)
 - match will return the params ON THE FRONT End
 Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603d4e11f0100a82d273"
+- The state in the reducer (ex: (state = { products: [] }, action)) defines the initial products
+> If you return {} instead of state, you most likely will get undefined object, hence return state for default value
+
 
 
 Resources
@@ -1083,8 +1086,28 @@ using bootstrap
 Q29. What is the difference between Link vs LinkContainer ?? 
 > GOOD FUCKING QUESTION .... 
 Link - Light Weight. Has children which are like Text
+Ex: 
+      <Link to='/admin/productlist' className='btn btn-light my-3'>
+        Go Back
+      </Link>
+
+
 LinkContainer - Middle Weight. Has children which are react-bootstrap components
+Ex: 
+        <LinkContainer to={`/product/${product._id}`}>
+          <Card.Title as='div' className='text-info'>
+            <strong>LinkContainer with CardTitle as div</strong>
+          </Card.Title>
+        </LinkContainer>
+
+
 Router - Heavey Weight, uploads components to the screen
+Ex:
+  <Router>
+      <Header />
+      <main></main>
+      <Footer />
+  </Router>
 
 Q30. What happens when you type in a path which is not defined in the Router?
 Ex: http://localhost:3000/helloWorld
