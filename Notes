@@ -739,7 +739,10 @@ Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/prosh
 - npm i bcryptjs
 
 Q73. How to hash passwords using bcrypt ? 
-
+Ex:
+userSchema.methods.checkPassword = async function (enteredPassword) {
+  return bcrypt.compare(enteredPassword, this.password)
+}
 
 Q75. How to run seeder js file ?
 - Go to root folder type in:
@@ -1094,7 +1097,7 @@ Ex:
 
 LinkContainer - Middle Weight. Has children which are react-bootstrap components
 Ex: 
-        <LinkContainer to={`/product/${product._id}`}>
+        <LinkContainer to={`/prod1uct/${product._id}`}>
           <Card.Title as='div' className='text-info'>
             <strong>LinkContainer with CardTitle as div</strong>
           </Card.Title>
