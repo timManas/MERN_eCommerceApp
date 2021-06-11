@@ -549,6 +549,20 @@ Ex:
         </Button>
       </Form>  
 
+ - How to create a Dropdown list ?
+<Form.Control as='select'>
+{[...Array(item.countInStock).keys()].map((x) => (
+  <option key={x + 1} value={x + 1}>
+    {x + 1}
+  </option>
+))}
+</Form.Control>
+
+- How to add all the values in a Object ?
+{cartItems.reduce((accumulator, item) => accumulator + item.qty * item.price,0).toFixed(2)}
+Note: The "0" is actually the starting number
+
+
 ===================================================================================================
 Questions 
 ===================================================================================================
