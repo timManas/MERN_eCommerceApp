@@ -4,142 +4,151 @@ Create a Full Stack BoilerPlate - React, Express, Node, MongoDB, Heroku
 
 1. Create Folder to put Project In
 2. Create frontEnd folder by:
-- npx create-react-app nameOfYourApp 
+
+- npx create-react-app "frontend"
+
 2. DELETE the .git files (.git & .gitignore ... otherwise you'll get erros)
 3. Create backend folder (Just make it)
 4. Initialize package.json by typing:
+
 - npm init
 - Follow the instructions on Q38.
 
-In the main folder (Not frontend Folder): 
-5. Install express
-6. Install mongoose
-7. Install dotenv 
-8. Install concurrently
-9. Install nodemon
-10. Install path
-11. Install morgan
+In the main folder (Not frontend Folder): 5. Install express 6. Install mongoose 7. Install dotenv 8. Install concurrently 9. Install nodemon 10. Install path 11. Install morgan
+
 - npm i express
 - npm i mongoose
 - npm i dotenv
 - npm i morgan
 - npm i -D concurrently
-- npm i -D nodemon 
+- npm i -D nodemon
 
 10. Set up package.json to run FE + BE together
-Add this to your package.json in ROOT Folder:
+    Add this to your package.json in ROOT Folder:
+
 - "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+  "start": "node backend/server",
+  "server": "nodemon backend/server",
+  "client": "npm start --prefix frontend",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
 
-11.  Set Backend to use ES6 Modules
-- Open package.json and add this line below  "description" & "main"  key/value pair:
+11. Set Backend to use ES6 Modules
+
+- Open package.json and add this line below "description" & "main" key/value pair:
 - "type": "module",
 
-11b. Add morgan to the server.js file 
+11b. Add morgan to the server.js file
+
 - app.use(morgan('dev'))
 
 12. Create .env file
-- Place this code there:
-NODE_ENV = development
-PORT = 5000
-MONGO_URI=mongodb+srv://timmanas:<PASSWORD_HERE>@cluster0.9czdc.mongodb.net/<DBNAMEOFYOURAPP ex: proshop>?retryWrites=true&w=majority
-JWT_SECRET = abc123
-PAYPAL_CLIENT_ID = <INSERT YOUR CLIENT ID HERE>
 
+- Place this code there:
+  NODE_ENV = development
+  PORT = 5000
+  MONGO_URI=mongodb+srv://timmanas:<PASSWORD_HERE>@cluster0.9czdc.mongodb.net/<DBNAMEOFYOURAPP ex: proshop>?retryWrites=true&w=majority
+  JWT_SECRET = abc123
+  PAYPAL_CLIENT_ID = <INSERT YOUR CLIENT ID HERE>
 
 13. Create server.js file in BE folder
-> Add base code (Located @Bottom of this README)
+
+    > Add base code (Located @Bottom of this README)
 
 14. Set up .gitignore
 15. Push to Git
 
 16. Install Heroku
+
 - Go to root:
 - brew tap heroku/brew && brew install heroku
 
 17. Login into Heroku CLI
+
 - Type in:
 - heroku login
 - Should open up a browser automatically ... then Click on ‘Log In’
 
-18.  Create a Heroku Application
+18. Create a Heroku Application
+
 - Go to Root:
 - heroku create <NameOFApp...Must be UNIQUE>
 
 19. Create new Heroku Repository
+
 - Type in:
 - heroku git:remote -a <NameOfApp …. ex: proshop2021>
 
 20. Add Config Vars in Heroku
+
 - Add the following manually:
 - MONGO_URI
 - PORT
 - NODE_ENV = Production
 
 21. Add ProcFile in rootFolder:
+
 - web: node backend/server.js
 
-22. Add the postbuild script on the package.json field  
+22. Add the postbuild script on the package.json field
+
 - "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 
 23. Check if there anyhing which need to be pushed to git & push if any:
+
 - git status
 
 24. Push Code to Heroku
+
 - git push heroku main
 
-
-
 ===================================================================================================
-ROUTER & HEADER & Footer BoilerPlate 
+ROUTER & HEADER & Footer BoilerPlate
 ===================================================================================================
 
-Install the following in the FRONTEND FOLDER:     <--- WATCH OUT
+Install the following in the FRONTEND FOLDER: <--- WATCH OUT
 react-bootstrap - Uses Containersm
 react-router-dom - Uses BrowserRouter, Route, Link
 react-router-bootstrap - Uses LinkContainer
 
-
 Instructions:
+
 1. Download BootStrap Theme on Bootswatch
+
 - Drag and Drop this to the frontend/src folder
 - Import files in index.js
 
 2. Create Header
 3. Create Footer
 4. Create HomeScreen & OtherScreen
-Ex: 
-  return (
-    <BrowserRouter>
-      <Header />
-      <main>
-        <Container>
-          <Route path='/loginscreen' component={LoginScreen} />
-          <Route path='/' component={HomeScreen} exact />
-        </Container>
-      </main>
-      <Footer />
-    </BrowserRouter>
-  )
+   Ex:
+   return (
+   <BrowserRouter>
+   <Header />
+   <main>
+   <Container>
+   <Route path='/loginscreen' component={LoginScreen} />
+   <Route path='/' component={HomeScreen} exact />
+   </Container>
+   </main>
+   <Footer />
+   </BrowserRouter>
+   )
 
 5. Configure App.js to add Header, Footer, HomeScreen
 6. Set up Routes on App.js
 
 Notes:
+
 - App.js will contain parent Tag "BrowserRouter" which will contain the other routes
 - If you are dealing with FE, you will definitely need to import react
-- DO NOT DOWNLOAD another version of react ...otherwise you will get  "Error: Invalid hook call. Hooks can only be called inside of the body of a function component."
+- DO NOT DOWNLOAD another version of react ...otherwise you will get "Error: Invalid hook call. Hooks can only be called inside of the body of a function component."
   > To fix this, delete your node_modules folder and reinstall all the imports (ex: npm i express ..etc)
-- react-bootstrap automatically connects to bootstrap.min.css   ....
-
+- react-bootstrap automatically connects to bootstrap.min.css ....
 
 ===================================================================================================
-CRUD Operations 
+CRUD Operations
 ===================================================================================================
 
 Install the following in the ROOT Folder:
@@ -147,59 +156,64 @@ axios: Allows us to do CRUD operations to DB ASYNC
 express-async-handler: Allos us to do handle ASYNC Calls
 
 # Instructions.
+
 Prequistes
+
 1. Create Schema using mongoose
 2. Create Model using Schema
 
+# Read:
 
-# Read: 
-- Find singleObject using "findById(_id of Object ... check MongoCompass)"    
+- Find singleObject using "findById(\_id of Object ... check MongoCompass)"
 
 # Create:
-- Create new Object by using ".create()"  or ".insertMany()"
-  
+
+- Create new Object by using ".create()" or ".insertMany()"
+
 # Update:
+
 - Update a new object by using "User.save()" ...which saves it automatically to DB
 
-# Delete 
-- Delete an object  by using  userSchema.remove()
+# Delete
+
+- Delete an object by using userSchema.remove()
 
 # Notes
-- Dont forget to add the await and async  to method
 
+- Dont forget to add the await and async to method
 
 ===================================================================================================
-CSS Operations 
+CSS Operations
 ===================================================================================================
 
 Notes
+
 - You can copy/paste the code from bootswatch directly into your code and you will get the same destroying
 
 - You can pass objects(i.e String from Tag Element to React Component)
-Ex: 
-On FrontEnd   - <Product product={product} test='HelloWorld' />
+  Ex:
+  On FrontEnd - <Product product={product} test='HelloWorld' />
 
-Then on Component you can get those values: 
+Then on Component you can get those values:
 const Product = ({ product, test }) => {
-  console.log(`property product: ${test}`)
-  console.log(`property test: ${test}`)
+console.log(`property product: ${test}`)
+console.log(`property test: ${test}`)
 }
 
-
-
 ===================================================================================================
-BACKEND ROUTING Operations 
+BACKEND ROUTING Operations
 ===================================================================================================
 
 You will need to:
+
 1. Set up routes in server.js
-Ex: 
-app.use('/api/products', productRoutes)
+   Ex:
+   app.use('/api/products', productRoutes)
 
 2. Create backend Routes page (aka ProductRoutes) which gets all API Rotues to backend
-Ex:
-import express from 'express'
-import { getProducts, getProductById } from './productController.js'
+   Ex:
+   import express from 'express'
+   import { getProducts, getProductById } from './productController.js'
 
 const router = express.Router()
 // GET Product Routes
@@ -208,183 +222,183 @@ router.route('/:id').get(getProductById)
 export default router
 
 3. Create Controller which performs the fetch to the DB
-Ex: 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
-export const getProducts = async (req, res) => {
-  const products = await Product.find()
-  res.json(products)
-}
+   Ex:
+   // @desc Fetch all products
+   // @route GET /api/products
+   // @access Public
+   export const getProducts = async (req, res) => {
+   const products = await Product.find()
+   res.json(products)
+   }
 
-// @desc    Fetch Single products
-// @route   GET /api/products/:id
-// @access  Public
+// @desc Fetch Single products
+// @route GET /api/products/:id
+// @access Public
 export const getProductById = async (req, res) => {
-  const product = await Product.findById(req.params.id)
+const product = await Product.findById(req.params.id)
 
-  if (product) {
-    res.json(product)
-  } else {
-    res.status(404)
-    res.json({ error: '404 - Product Not found' })
-  }
+if (product) {
+res.json(product)
+} else {
+res.status(404)
+res.json({ error: '404 - Product Not found' })
+}
 }
 
 How to Test ?
-1. Go to Postman 
+
+1. Go to Postman
 2. Set up GET call:
-Find All Products - {{URL}}/api/products
-Find Single Product - {{URL}}/api/products/5feb603d4e11f0100a82d272
+   Find All Products - {{URL}}/api/products
+   Find Single Product - {{URL}}/api/products/5feb603d4e11f0100a82d272
 3. Notice JSON Response
 
 Notes
 https://www.npmjs.com/package/jsonwebtoken
 
 ===================================================================================================
-FE make Calls to BE to fetch Produts 
+FE make Calls to BE to fetch Produts
 ===================================================================================================
 
 You will Need:
+
 1. Download axios on frontend
 2. Set up proxy in package.json in frontend folder
-Ex: 
- "proxy": "http://localhost:5000",
+   Ex:
+   "proxy": "http://localhost:5000",
 
 3. Import useState & useEffect from react on HomeScreen
 4. Set up UseState & useEffect
 
-Ex: 
-  const [products, setProducts] = useState([])
+Ex:
+const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
-      console.log('Data: ' + data)
-      setProducts(data)
-    }
+useEffect(() => {
+const fetchProducts = async () => {
+const { data } = await axios.get('/api/products')
+console.log('Data: ' + data)
+setProducts(data)
+}
 
     fetchProducts()
-  }, [])
+
+}, [])
 
 Notes
+
 - You need useState to set the value of products
 - You need useEffect to change the screen if any of the Dependencies changes
 - Having a blank Dependencies (i.e '[]') will invoke useEffect if page loads
 - If you get rid of '[]' then the useEffect will be invoked EVERY SINGLE TIME .... NOT GOOD ..Always add []
 - If [] has Dependencies, ex: [test] ...then if test component changes then useEffect is invoked again
 
-
 ===================================================================================================
-Redux 
+Redux
 ===================================================================================================
-
-
 
 What you will need ?
 Install the following in frontend folder:
+
 - redux
 - react-redux
-- redux-thunk 
+- redux-thunk
 - redux-devtools-extension
 
 Steps
+
 1. Create store.js
 2. Import and Add Provider in index.js
 3. Create constants
-  > Request, Success, Fail
-4. Create reducer 
-  > Will contain switch (request, success, fail)
+   > Request, Success, Fail
+4. Create reducer
+   > Will contain switch (request, success, fail)
 5. Create actions
-  > Perform the work 
-  > Will contain dispatch ({type, payload, error})
+   > Perform the work
+   > Will contain dispatch ({type, payload, error})
 6. Add Reducer to store
-7. Bring into components via useSelector & useDispatch 
-
+7. Bring into components via useSelector & useDispatch
 
 Notes
+
 - Affect Global state (ex: products)
 - We use Redux so we can use a "GOD" object to fetch states instead of passing it through props
 - Think of state as a cloud hovering over application
   > When we need a info, we get the value from the cloud
-- In Components we fire off the  Actions > Reducers > Store ....
+- In Components we fire off the Actions > Reducers > Store ....
 - Remember , Reducer takes in Action & State
 - axios will return a get response. (i.e headers, data, status, statusText, config, request)
 - match will return the params ON THE FRONT End
-Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603d4e11f0100a82d273"
+  Ex: match.params.id will take the id from "http://localhost:3000/product/5feb603d4e11f0100a82d273"
 - The state in the reducer (ex: (state = { products: [] }, action)) defines the initial products
-> If you return {} instead of state, you most likely will get undefined object, hence return state for default value
-
-
+  > If you return {} instead of state, you most likely will get undefined object, hence return state for default value
 
 Resources
 https://react-redux.js.org/introduction/quick-start
 https://react-bootstrap.github.io/components/alerts/
-
 
 ===================================================================================================
 BackEnd - Authenticaiton  
 ===================================================================================================
 
 What you will need ? Install the following in the root folder
-- bcryptjs  
+
+- bcryptjs
 - jsonwebtoken
 
 Steps
-------  Authenticates User 
+------ Authenticates User
+
 1. Create UserModel
 
 2. Set up matchPassword verification using bcrypt in userModel
-2b. Set up password hashing 
+   2b. Set up password hashing
 
-3. Create JSON WebToken 
+3. Create JSON WebToken
+
 - generate WebToken by signing it with JWT_SECRET
 
 4. Set up UserController to authenticate user (i.e findOne(email))
 
-5. Create UserRoutes 
+5. Create UserRoutes
 
-6. Add userRoutes on server.js 
+6. Add userRoutes on server.js
 
 7. Set express to accept JSON raw data in the request body using (app.use(express.json()))
 
-
------ Authorizes User using WebToken
-8. Create authMentication middleware
-9. Setup fetching UserProfile once user is authenticated in userController
-10. Add protect middlware to userRoutes
-
+----- Authorizes User using WebToken 8. Create authMentication middleware 9. Setup fetching UserProfile once user is authenticated in userController 10. Add protect middlware to userRoutes
 
 Notes
+
 - You will to Authenticate & Authorize Users
-> Authenticaiton - Verify user credentials
-> Authorization - Verify if user should be able to access data
+
+  > Authenticaiton - Verify user credentials
+  > Authorization - Verify if user should be able to access data
 
 - Sign the JWT with a secret Key
 - You will need to 'verify' the JWT using 'verify' and JWT_SECRET
 - You add the Bearer TOKEN in the request Header ...NOT the body
 - You wiill need to seperate the logic in the routes and move to a controller instead
-Ex: 
-import {getProducts, getProductById} from './productController.js'
-const router = express.Router()
-router.route('/').get(getProducts)
-router.route('/:id').get(getProductById)
+  Ex:
+  import {getProducts, getProductById} from './productController.js'
+  const router = express.Router()
+  router.route('/').get(getProducts)
+  router.route('/:id').get(getProductById)
 - How to access the contents of the GET/POST request ?
-> Use req.body.xyz (ex: req.body._id or req.body.email)
+  > Use req.body.xyz (ex: req.body.\_id or req.body.email)
 - app.use(express.json()) will allow us to use JSON data in the request body
-- *** WHY DO WE USE "protect" component ?
-  > It takes in the Bearer Token, modifies the req.user 
+- \*\*\* WHY DO WE USE "protect" component ?
+  > It takes in the Bearer Token, modifies the req.user
   > But why though ? So that we only pass the token instead of the user credetials
-
 
 Documentation
 https://www.npmjs.com/package/jsonwebtoken
 
 ===================================================================================================
-FE Authentication   
+FE Authentication  
 ===================================================================================================
 
 Steps
+
 - Create constants
 - Create Reducer
 - Create Actions
@@ -394,40 +408,41 @@ Steps
 - Modify Header to account for changes & Route to LoginScreen
 
 Question
-1. What part is responsible for bringing the user back to the homepage on sign in 
-> This line : 
- const redirect = location.search ? location.search.split('=')[1] : '/'
-2. What is location & history ? 
+
+1. What part is responsible for bringing the user back to the homepage on sign in
+   > This line :
+   > const redirect = location.search ? location.search.split('=')[1] : '/'
+2. What is location & history ?
 3. What is history.push() ?
 
-
 ===================================================================================================
-BE  Registration
+BE Registration
 ===================================================================================================
 
 Steps
+
 1. Create 'registerUser' in userController
 2. Add post method to routes in userRoutes
 
-
-
 ===================================================================================================
-FE  Registration
+FE Registration
 ===================================================================================================
 
 Steps
+
 1. Create Constants
-2. Create reducer in userReducer 
+2. Create reducer in userReducer
 3. Create action in userActions
 4. Create Register screen
 
 Notes
-- When registering new user in the userActions, dont forget to add 
-    dispatch({
-      type: USER_LOGIN_SUCCESS, // Successfully logs in user
-      payload: data,
-    })
- > This will make the username appear in the header =)
+
+- When registering new user in the userActions, dont forget to add
+  dispatch({
+  type: USER_LOGIN_SUCCESS, // Successfully logs in user
+  payload: data,
+  })
+  > This will make the username appear in the header =)
 
 ===================================================================================================
 Shopping Cart
@@ -436,12 +451,13 @@ Shopping Cart
 Steps
 . On product page, Add a button "Add to cart"
 . Create CartScreen.js
-  - Add Constants
-  - Add Actions
-  - Add Reducers
-. Add Reducer to store.js
-. Add cartItemsToStorage to store items locally in cache 
-. Add CartScreen to App.js
+
+- Add Constants
+- Add Actions
+- Add Reducers
+  . Add Reducer to store.js
+  . Add cartItemsToStorage to store items locally in cache
+  . Add CartScreen to App.js
 
 ===================================================================================================
 Paypal
@@ -451,105 +467,108 @@ Need to install in frontend:
 react-paypal-button-v2
 
 Steps
+
 - Create Backend: OrderRoutes, OrderController, OrderModel
 
 - Add paypal request response on server.js
-// Routes for paypal req/res
-app.get(
+  // Routes for paypal req/res
+  app.get(
   '/api/config/paypal',
   (req, res) => res.send(process.env.PAYPAL_CLIENT_ID) // When we hit this route, we fetch this Client
-)
+  )
 
 - Create FrontEnd: orderAction, orderReducers, orderConstants, store
 - Add Routes to App.js
 
 Notes:
+
 - Where to find the Paypal email/password for Checkout ?
-> Go to dev paypal > Accounts > Look at the personal account
+  > Go to dev paypal > Accounts > Look at the personal account
 
 ===================================================================================================
-Tips And Tricks 
+Tips And Tricks
 ===================================================================================================
 
 - Using "import express from 'express' ", does not work unless you add ES6 module instead.
-> Hence if you tried, const express = require('express'), that should work
+  > Hence if you tried, const express = require('express'), that should work
 - To print our an object try using this:
-      console.log(JSON.stringify(YOUR_OBJECT, null, 4))
-- MAKE SURE THAT Routes Setup in server.js OCCUR before "app.get('/', (req, res) => {}" 
-Ex: 
-app.use('/api/products', productRoutes)
+  console.log(JSON.stringify(YOUR_OBJECT, null, 4))
+- MAKE SURE THAT Routes Setup in server.js OCCUR before "app.get('/', (req, res) => {}"
+  Ex:
+  app.use('/api/products', productRoutes)
 
 Commands to install Dependencies
 Root Folder - npm i bcryptjs colors dotenv express express-async-handler jsonwebtoken mongoose morgan multer
 FrontEnd Folder - npm i react-bootstrap react-dom react-helmet react-paypal-button-v2 react-redux react-router-bootstrap react-router-dom redux redux-devtools-extension redux-thunk
 
-- How to kill  Servers
-Type in:
-sudo lsof -i :5000
-kill -9 PID#
+- How to kill Servers
+  Type in:
+  sudo lsof -i :5000
+  kill -9 PID#
 
 - On Postman Authorization, instead of having to manually copy the token and entering it to the header of 'api/user/profile'
-> We can use Bearer Token under "Authentication"
-How ?
+
+  > We can use Bearer Token under "Authentication"
+  > How ?
 
 - How to make image go to border on Cards ?
-Remove the p-3
-<Card className='my-3  text-white bg-primary'>
+  Remove the p-3
+  <Card className='my-3  text-white bg-primary'>
 
 - Error Handling
-> If you throw this error "throw new Error('User already exists')"
-> This will throw a regular html response back to the client with status code 500
->  To customize this error you can add the following:
-    res.status(400)
-    res.send('User Already ExistsX')
-    throw new Error('User already exists')
-> Then on the client you will see the error you do this: 
-    console.log('Error::: ' + error.response.data)
+  > If you throw this error "throw new Error('User already exists')"
+  > This will throw a regular html response back to the client with status code 500
+  > To customize this error you can add the following:
+      res.status(400)
+      res.send('User Already ExistsX')
+      throw new Error('User already exists')
+  > Then on the client you will see the error you do this:
+      console.log('Error::: ' + error.response.data)
 
 Example:
-1. Create a POST /api/users/login  (This allows user to login)
-2. Go to test and add this line: 
-pm.environment.set("TOKEN", pm.response.json().token)
+
+1. Create a POST /api/users/login (This allows user to login)
+2. Go to test and add this line:
+   pm.environment.set("TOKEN", pm.response.json().token)
 3. Create a GET /api/users/profile (This fetches the users profile ONCE verified logged in)
 4. Set Authorization of GET request to have Authorization type: "Bearer Token"
-  > Enter the {{TOKEN}}
-
+   > Enter the {{TOKEN}}
 
 - When creating a Form, always place the onSubmitHandler inside the FORM and NOTTT the button
 - When fetching the data from the form, you will need to get the value and assign it to the useState (ex: setEmail())
-Ex: 
-     <Form onSubmit={submitHandler}>
-        <Form.Group controlId='email'>
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Enter email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Form.Text className='text-muted'>
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+  Ex:
+  <Form onSubmit={submitHandler}>
+  <Form.Group controlId='email'>
+  <Form.Label>Email address</Form.Label>
+  <Form.Control
+  type='email'
+  placeholder='Enter email'
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  />
+  <Form.Text className='text-muted'>
+  We'll never share your email with anyone else.
+  </Form.Text>
+  </Form.Group>
 
-        <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Check me out' />
-        </Form.Group>
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>  
+          <Form.Group controlId='password'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId='formBasicCheckbox'>
+            <Form.Check type='checkbox' label='Check me out' />
+          </Form.Group>
+          <Button variant='primary' type='submit'>
+            Submit
+          </Button>
+        </Form>
 
- - How to create a Dropdown list ?
+- How to create a Dropdown list ?
 <Form.Control as='select'>
 {[...Array(item.countInStock).keys()].map((x) => (
   <option key={x + 1} value={x + 1}>
@@ -559,1128 +578,1230 @@ Ex:
 </Form.Control>
 
 - How to add all the values in a Object ?
-{cartItems.reduce((accumulator, item) => accumulator + item.qty * item.price,0).toFixed(2)}
-Note: The "0" is actually the starting number
+  {cartItems.reduce((accumulator, item) => accumulator + item.qty \* item.price,0).toFixed(2)}
+  Note: The "0" is actually the starting number
 
+- How to remove an item from a list ?
+  Use Filter, Go through each element. If condition is satisfied, removes it from the list
+  Ex:
+  return {
+  ...state,
+  cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+  }
 
 ===================================================================================================
-Questions 
+Questions
 ===================================================================================================
 
 1. How to create a BoilerPlate React App ?
+
 - Use the CreateReactApp via https://reactjs.org/docs/create-a-new-react-app.html
 - To create a project, run:
-    npx create-react-app nameOfYourApp
-    cd my-app
-    npm start
+  npx create-react-app nameOfYourApp
+  cd my-app
+  npm start
 
-Note: In our case we used: 
-    npx create-react-app frontEnd   
-        > Why FrontEnd ? Because we React is the frontEnd 
-        > Once finished, it will create a boilerPlate React App in a folder called "frontend"
+Note: In our case we used:
+npx create-react-app frontEnd
+
+> Why FrontEnd ? Because we React is the frontEnd > Once finished, it will create a boilerPlate React App in a folder called "frontend"
 
 2. How to start the application once CreateReactApp finishes ?
+
 - Go to the frontend folder
 - Type in:
-    npm start
+  npm start
 - Go to browser under http://localhost:3000
 
-
 Q2a. How to run production in localPC ?
+
 - Go to frontend folder and run:
-    npm run build
+  npm run build
 - This will create a build folder in the frontend
 - Go to Root folder and run:  
-    npm run start
+   npm run start
 - Go to localhost:5000
 
 8. How to install BootSwatch and use them from Bootswatch ?
+
 - Download theme on bootswatch
 - Choose theme
 - Download version "bootstrap.min.css"
-- Drag and Drop to src folder of frontend 
+- Drag and Drop to src folder of frontend
 - Go into index.js and import using:
-    import './bootstrap.min.css'
+  import './bootstrap.min.css'
 
 15. How to use 'font awesome' into application ?
+
 - Go to cdnJS
-- Type in font awesome in search bar 
+- Type in font awesome in search bar
 - Copy link tag
-- Place in index.html in public folder 
-Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
-- Why ? So we can use icon classes 
+- Place in index.html in public folder
+  Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
+- Why ? So we can use icon classes
 - Now go to Header and add this line in:
   <i className='fas fa-shopping-cart'></i>
   <i className='fas fa-user'></i>
 
 23. How to install react-Router ?
+
 - Go to frontend Folder and type in:
   npm i react-router-dom react-router-bootstrap
 
-34. How to disable a button if there is no stock left ? 
-- This checks if the button has stock or not:
-<Button className='btn-block' type='button'disabled={product.countInStock === 0}
+34. How to disable a button if there is no stock left ?
 
-38. How to create package.json 
+- This checks if the button has stock or not:
+  <Button className='btn-block' type='button'disabled={product.countInStock === 0}
+
+38. How to create package.json
+
 - Go to root folder and type in:
   npm init
 - Follow the instructions
 - After this is completed, it will create a 'package.json' in the home folder
 
 Ex:
-package name: (mern_ecommerceapp) 
-version: (1.0.0) 
+package name: (mern_ecommerceapp)
+version: (1.0.0)
 description: MERN shopping cart app
 entry point: (index.js) server.js
-test command: 
-git repository: (https://github.com/timManas/MERN_eCommerceApp.git) 
-keywords: 
-author: 
+test command:
+git repository: (https://github.com/timManas/MERN_eCommerceApp.git)
+keywords:
+author:
 license: (ISC) MIT
 About to write to /Users/timmanas/ProgrammingProjects/MERNStack/MERN_eCommerceApp/package.json:
 
 {
-  "name": "mern_ecommerceapp",
-  "version": "1.0.0",
-  "description": "MERN shopping cart app",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/timManas/MERN_eCommerceApp/issues"
-  },
-  "homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
+"name": "mern_ecommerceapp",
+"version": "1.0.0",
+"description": "MERN shopping cart app",
+"main": "server.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
+},
+"author": "",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/timManas/MERN_eCommerceApp/issues"
+},
+"homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
 }
 
-Q39. How to install express ? 
+Q39. How to install express ?
+
 - Make sure youre in the root folder
 - Type in:
   npm i express
 
-
 Q42. How to run node backend Server ?
-- Make sure you package.json initialized  (Take a look at #38 above)
+
+- Make sure you package.json initialized (Take a look at #38 above)
 - Create Code to listen in at Port:5000 (Ex: app.listen(5000, console.log('Server is running')))
 - Type the following in the root folder:
   npm start
-** Note: You will need to start front & backend seperately ... Unless you set it up in package.json
- > Take a look at the package.json on the root folder AND also at the frontend Folder
+  \*\* Note: You will need to start front & backend seperately ... Unless you set it up in package.json
+  > Take a look at the package.json on the root folder AND also at the frontend Folder
 
 44. How to start the frontEnd & BackEnd ?
-Note there are two process to start:
+    Note there are two process to start:
 1. FrontEnd:
-  - Go to frontend folder and type in: "npm start"
+
+- Go to frontend folder and type in: "npm start"
 
 2. BackEnd:
-  - Go to Root folder and type in: "npm start"
 
+- Go to Root folder and type in: "npm start"
 
 46. How to install axios ?
+
 - Go to frontend folder and type:
   npm i axios
 
+51. How to create a proxy to connect from localhost:3000 to localhost:5000 ?
 
-51. How to create a proxy to connect from localhost:3000 to localhost:5000 ? 
 - Go to frontend package.json
 - Add in this line "proxy": "http://127.0.0.1:5000"
 - Restart frontEnd Server
 
+52. How to install nodemon ?
 
-
-52. How to install nodemon ? 
 - Go to root and type in:
-npm i nodemon concurrently
+  npm i nodemon concurrently
 
 53. How to install as Dev Dependencies ?
-- Type in -D in npm install
-Ex: 
-npm i -D nodemon concurrently
 
-- After install, it should get add into Dev depenencies 
-Ex: 
+- Type in -D in npm install
+  Ex:
+  npm i -D nodemon concurrently
+
+- After install, it should get add into Dev depenencies
+  Ex:
   "devDependencies": {
-    "concurrently": "^5.3.0",
-    "nodemon": "^2.0.6"
+  "concurrently": "^5.3.0",
+  "nodemon": "^2.0.6"
   }
 
+54. How to use nodemon ?
 
-54. How to use nodemon ? 
 - Install nodemon
-- Once install go to your package.json 
+- Once install go to your package.json
 - Go to the scripts and add in this line "server": "nodemon backend/server"
-Ex:
- "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server"
+  Ex:
+  "scripts": {
+  "start": "node backend/server",
+  "server": "nodemon backend/server"
   },
 
 55. How to run both Backend + FrontEnd at the same time
+
 - Install concurrently
 - Go to root package.json
 - Add this line to scripts:
   "dev": "concurrently \"npm run server\" \"npm run client\""
 - Go to root and type in:
   npm run dev
-Ex:
+  Ex:
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+  "start": "node backend/server",
+  "server": "nodemon backend/server",
+  "client": "npm start --prefix frontend",
+  "dev": "concurrently \"npm run server\" \"npm run client\""
   },
 
-
 57. How to install dotenv ?
+
 - Type:
- npm i dotenv
-
-
+  npm i dotenv
 
 Q60. How to convert from common JS syntax to ES6 Module
+
 - Must have node v14.6+ a
   > How to install latest version of node ?
   > Use nvm ...Type in nvm install 14.51.1
 - Go to package.json
-- Add in "type": "module 
-Ex: 
+- Add in "type": "module
+  Ex:
   "name": "mern_ecommerceapp",
   "version": "1.0.0",
   "description": "MERN shopping cart app",
   "main": "server.js",
   "type": "module",
 
-
-
 63. How to connect through Compass ?
+
 - Go to MongoDb Atlas
 - Go to Clusters > connect > Connect using MongoDb Compass
-- Select "I have MongoDB Compass"  
+- Select "I have MongoDB Compass"
 - Copy the connection string
 - Paste into MongoDB Compass
   > Dont forget to change the password
   > Dont forgett to change from /test to /DatabaseNAME_XYZ ...(Ex: /proshop)
-  Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
+  > Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
 
 64. How to connect your application to MongoDB URI
+
 - Go to Atlas
 - Go to Clusters > connect > Connect your application
 - Copy connection string
 - Place inside .env file
   > Dont forget to change the password
   > Dont forget to change dbname
-Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
-
+  > Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
 
 67. How to install Mongoose ?
+
 - Go to root:
   npm i mongoose
 
-
-
 70. How to install bcryptjs ?
+
 - npm i bcryptjs
 
-Q73. How to compare passwords using bcrypt ? 
+Q73. How to compare passwords using bcrypt ?
 Ex:
 userSchema.methods.checkPassword = async function (enteredPassword) {
-  return bcrypt.compare(enteredPassword, this.password)
+return bcrypt.compare(enteredPassword, this.password)
 }
 
 Q75. How to run seeder js file ?
+
 - Go to root folder type in:
-"node backend/seeder"      - Used for import data
-"node backend/seeder -d"      - Used for destroying data
-Or you can put in npm  by:
-- modify package.json to be: 
+  "node backend/seeder" - Used for import data
+  "node backend/seeder -d" - Used for destroying data
+  Or you can put in npm by:
+- modify package.json to be:
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d"
+  "start": "node backend/server",
+  "server": "nodemon backend/server",
+  "client": "npm start --prefix frontend",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "data:import": "node backend/seeder",
+  "data:destroy": "node backend/seeder -d"
   },
 
-
 77. How to install express-async-handler ?
-Go to root folder, type in:
-npm i express-async-handler
+    Go to root folder, type in:
+    npm i express-async-handler
 
+78. How to use your middleware ?
 
-
-79. How to use your middleware ?
 - You have to use:
-app.use((req,res, next) => {})
-
+  app.use((req,res, next) => {})
 
 Q122. How to install json webtoken ?
+
 - npm i jsonwebtoken
 
-
-
-Q123. How to generate a JSON WebToken ? 
+Q123. How to generate a JSON WebToken ?
 import jwt from 'jsonwebtoken'
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-  })
+return jwt.sign({ id }, process.env.JWT_SECRET, {
+expiresIn: '30d',
+})
 }
 
 Q124: How to decode a JSON WebToken
+
 - Take the token from Postman for logging in
-Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
+  Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
 - Go to JWT.io
 - Paste token into "Encoded"
-- You can see the header, payload, signature 
-
+- You can see the header, payload, signature
 
 Q135. How to move from one page to another ?
+
 - use history.push()
 
-
-
 Q140. How to log into Paypal developer account ?
+
 - Go to: developer.paypal.com/developer/applications
 
-
-
 151. How to create an app on paypal
+
 - Go to Dashboard and click on "Create App"
-- Copy Client ID and copy of .env file 
-
-
+- Copy Client ID and copy of .env file
 
 169. How to install morgan ?
+
 - Go root:
-npm i morgan
-
-
+  npm i morgan
 
 Q175. How to install react-helmet ?
-- Go to frontend and type: 
-npm i react-helmet
 
+- Go to frontend and type:
+  npm i react-helmet
 
+Q183. How to install Heroku ?
 
-
-Q183. How to install Heroku ? 
 - Go to root folder and type:
-brew tap heroku/brew && brew install heroku
+  brew tap heroku/brew && brew install heroku
 
-Q184. How to login into HEROKU CLU ? 
+Q184. How to login into HEROKU CLU ?
+
 - Go to root:
-heroku login
+  heroku login
 - Should open up a browser automatically
 - Click on 'Log In'
 
 Q185. How to create a Heroku application ?
+
 - Go to root:
-heroku create <NameOFApp...Must be UNIQUE>
-Ex: heroku create proshop2021
+  heroku create <NameOFApp...Must be UNIQUE>
+  Ex: heroku create proshop2021
 - It will show you the application URL && git repository for Heroku
-Ex:
-https://proshop2021.herokuapp.com/ | https://git.heroku.com/proshop2021.git
+  Ex:
+  https://proshop2021.herokuapp.com/ | https://git.heroku.com/proshop2021.git
 
 Q186. How to push App to Heroku repository
+
 - Push to Git
 - Push to Heroku =) Thats it (git push heroku master ... or git push heroku main)
 
 Q187. Before pushing app to heroku you will need the following:
+
 1. ProcFile: Tells heroku what to run for our application
 2. Add the postbuild script on the package.json field  
-"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+   "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
 
 Q188. How to add Heroku as a remote repository ?
 
 189. How to create a new Heroku Git repository
-- Go to root folder 
+
+- Go to root folder
 - Must have git folder already initialized
 - Type in this line:
-heroku git:remote -a proshop2021
-git push heroku master ... or git push heroku main
-
-
+  heroku git:remote -a proshop2021
+  git push heroku master ... or git push heroku main
 
 191. How to access the Heroku logs /
+
 - Go to root of the folder:
-heroku logs
+  heroku logs
 
+194. How to convert from commonJS to ES6 (ECMA Script module) module syntax ?
 
-194. How to convert from commonJS to ES6 (ECMA Script module) module syntax ? 
 - Has to be above 14.6.0
 - Two ways to do this:
-a. Change file extention to '.mjs'
-b. Add this line to package.json
-{
+  a. Change file extention to '.mjs'
+  b. Add this line to package.json
+  {
   "type": "module"
-}
-
-
-
-
+  }
 
 ===================================================================================================
-Notes 
+Notes
 ===================================================================================================
 
 1. How to create a BoilerPlate React App ?
+
 - Use the CreateReactApp via https://reactjs.org/docs/create-a-new-react-app.html
 - To create a project, run:
-    npx create-react-app nameOfYourApp
-    cd my-app
-    npm start
+  npx create-react-app nameOfYourApp
+  cd my-app
+  npm start
 
-Note: In our case we used: 
-    npx create-react-app frontEnd   
-        > Why FrontEnd ? Because we React is the frontEnd 
-        > Once finished, it will create a boilerPlate React App in a folder called "frontend"
+Note: In our case we used:
+npx create-react-app frontEnd
+
+> Why FrontEnd ? Because we React is the frontEnd > Once finished, it will create a boilerPlate React App in a folder called "frontend"
 
 2. How to start the application once CreateReactApp finishes ?
+
 - Go to the frontend folder
 - Type in:
-    npm run
+  npm run
 - Go to browser under http://localhost:3000
 
 3. Where is your starting point ?
-- It is the index.html file located in frontend > public 
-- However, the starting point for react Apps is "index.js"  located in frontend > src
+
+- It is the index.html file located in frontend > public
+- However, the starting point for react Apps is "index.js" located in frontend > src
 
 4. Regular syntax vs Arrow functions.
-Both do the same thing
-Regular Functional component  syntax:
+   Both do the same thing
+   Regular Functional component syntax:
 
 function App() {
-  return (
-    <>
-      <h1>Welcome to ProShop</h1>
-    </>
-  )
+return (
+<>
+
+<h1>Welcome to ProShop</h1>
+</>
+)
 }
 
 Arrow Functional Components
 const App = () => {
-  return (
-    <>
-      <h1>Welcome to ProShop</h1>
-    </>
-  )
+return (
+<>
+
+<h1>Welcome to ProShop</h1>
+</>
+)
 }
 
-Q5. What are react Components ? 
-- Components are independent and reusable bits of code 
+Q5. What are react Components ?
+
+- Components are independent and reusable bits of code
 - Server as JS Functions
 - Return HTML via a render function
 - Comes in two types : Class components & Function Components
 
 Q5a. What is Class Component ?
+
 - Class component must extend React.Component
 - Gives your component access to React.Components via inheritance
 - Requires a render() method, this method returns HTML
-Ex: 
-class Car extends React.Component {
+  Ex:
+  class Car extends React.Component {
   render() {
-    return <h2> Hello World </h2>
+  return <h2> Hello World </h2>
   }
-}
-To use this component we use it a file like this 
-<Car> </Car> 
-Or
-ReactDom.render(<Car />, document.getElementById('root'))
+  }
+  To use this component we use it a file like this
+  <Car> </Car>
+  Or
+  ReactDom.render(<Car />, document.getElementById('root'))
 
-Q5b. What is Function Component ? 
+Q5b. What is Function Component ?
+
 - Returns HTML
-Ex: 
-function Car() {
-    return <h2>Hi, I AM car</h2>
-}
+  Ex:
+  function Car() {
+  return <h2>Hi, I AM car</h2>
+  }
 
 To Display Car:
 ReactDom.render(<Car/>, document.getElementById('root'))
 
-
 Q6. What is React BootStrap ?
-- Need to install Bootstrap first 
+
+- Need to install Bootstrap first
 
 Q7. What is BootSwatch ?
-- Free themes for bootstrap 
+
+- Free themes for bootstrap
 - Bootstrap files but customized to have different themes, colors, fonts ..etc
 
 8. How to install BootSwatch and use them from Bootswatch ?
+
 - Download theme on bootswatch under "bootstrap.min"
-- Drag and Drop to src folder 
+- Drag and Drop to src folder
 - Go into index.js and import using:
-    import './bootstrap.min.css'
-  
+  import './bootstrap.min.css'
+
 9. Note: Once you have bootstrap installed, Now you can install React-BootStrap
 
 10. How to install React-BootStrap ?
+
 - Note: Make sure you follow step 8 first and install bootstrap theme
-- Run: 
+- Run:
   npm i react-bootstrap
 
-Q11. What is a container ? 
+Q11. What is a container ?
+
 - Similar to Components
 
-Q12. How to use Containers in App ? 
+Q12. How to use Containers in App ?
+
 - Import it in a file using {}
-Ex: import { Container } from 'react-bootstrap' // We import Containers from react-bootstrap
+  Ex: import { Container } from 'react-bootstrap' // We import Containers from react-bootstrap
 
 Q13. What is cdnjs ?
+
 - It is Content Delivery Network for JS
 - Provides contents like fonts, libraries ..etc for websites
 
 Q14. Note: For this app, we use "font awesome", we use cdnJS to import it
 
 15. How to use 'font awesome' into application ?
+
 - Go to cdnJS
-- Type in font awesome in search bar 
+- Type in font awesome in search bar
 - Copy link tag
-- Place in index.html in public folder 
-Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
-- Why ? So we can use icon classes 
+- Place in index.html in public folder
+  Ex: Check in index.html for this line "<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />"
+- Why ? So we can use icon classes
 - Now go to Header and add this line in:
   <i className='fas fa-shopping-cart'></i>
   <i className='fas fa-user'></i>
 
-Q16. When to use {} in import ? 
+Q16. When to use {} in import ?
+
 - Basically when Component youre trying to import does NOT have "export default"
-Ex:
-import  { A } from './A'
-It only works if A contains a named export called A:
-export const A = 42
-export const myA = 43
-export const Something = 50
+  Ex:
+  import { A } from './A'
+  It only works if A contains a named export called A:
+  export const A = 42
+  export const myA = 43
+  export const Something = 50
 
 Note: a module can only have ONE default export, but as many exports areyoud like
 
+Q17. How to access Properties in COmponents ?
 
-Q17. How to access Properties in COmponents ? 
-- On the Component, place it inside the '()' 
-Note: Make sure that the Component calling it does have properties
+- On the Component, place it inside the '()'
+  Note: Make sure that the Component calling it does have properties
 
 xQ18. What is destructuring ?
-- DeStructuring allows to unpack values from arrays, properties of objects  into
-distinct variable data and assigning to variables
-Ex: Array DeStructuring
-[x,y,z] = [10,20,30]
-console.log(x)
-console.log(y)
 
+- DeStructuring allows to unpack values from arrays, properties of objects into
+  distinct variable data and assigning to variables
+  Ex: Array DeStructuring
+  [x,y,z] = [10,20,30]
+  console.log(x)
+  console.log(y)
 
 Ex: Object DeStructuring
 ({x,y} = {x:10, y:20})
-console.log(x)  // 10
-console.log(y)  // 20
+console.log(x) // 10
+console.log(y) // 20
 
 Q19. What is the difference between {}, ${}, {{}}
-Ex: value={product.rating} text={`${product.numReviews} reviews`} 
+Ex: value={product.rating} text={`${product.numReviews} reviews`}
 Ex: style={{ color }}
+
 - {} : are special syntax in JSX. Used to evaluate JS Expression at compilation
 - ${}: are used template literals. Used when we have backticks ``
 - {{}}: are for fetching CSS
 
 Q20. Where do you get "fas fa-star", "fa-star-half-alt" & "far fa-star" from ?
+
 - Go to font awesome and search for star
 - Then you will see an Example: "<i class="fas fa-star"></i>"
 
 Q21. How to set default properties on a component ?
+
 - Create a defaultProps in the Component of choice
 - This will be enabled for all elements in the component
-Ex: 
-Rating.defaultProps = {
+  Ex:
+  Rating.defaultProps = {
   color: '#f8e825',
-}
+  }
 
 Q22. What is propTypes ?
-- PropTypes can type check if property has the correct format 
-Ex:
-Rating.propTypes = {
+
+- PropTypes can type check if property has the correct format
+  Ex:
+  Rating.propTypes = {
   value: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
-}
+  }
 
 23. How to install react Router ?
+
 - Go to frontend Folder and type in:
   npm i react-router-dom react-router-bootstrap
 
-Q24. What is BrowserRouter ? 
+Q24. What is BrowserRouter ?
+
 - React Component
 - Used for doing client side routing with URL segments
 - Routes to different webpages of your applications
-Ex. Routing to home using '/' or  Product page using '/product'
+  Ex. Routing to home using '/' or Product page using '/product'
 
 Q25. Why do we need to wrap the entire app in BrowserRouter ?
+
 - Because this is the entry point of the application ?
 - Where else would you put it ?
 
-Q26. What is the 'exact' keyword used in Route ? 
+Q26. What is the 'exact' keyword used in Route ?
 <Route path='/' component={HomeScreen} exact />
+
 - Basically, whenever we type in /page1 or /page2, it will always forward to HomeScreen
 - We dont want that, instead we want to go to the homescreen if the user routes to '/' exactly
 - If you type in '/' in your application, you will only go to homescreen
 - If you type in 'http://localhost:3000/product/2', then it will NOT go to the homescreen
 
-Q27. What is the ':id' in '/product/:id'  ?
+Q27. What is the ':id' in '/product/:id' ?
+
 - That is a place holder value which allows the user to route to any page dynamically
-Ex: /product/1  Or /product/2 Or /product/3
+  Ex: /product/1 Or /product/2 Or /product/3
 
-28. NOTE !! Since this is SPA, we do NOT want to use 'a'  tags(i.e <a href></a>). We want to use 'Link' instead
-using bootstrap
+28. NOTE !! Since this is SPA, we do NOT want to use 'a' tags(i.e <a href></a>). We want to use 'Link' instead
+    using bootstrap
 
-Q29. What is the difference between Link vs LinkContainer ?? 
-> GOOD FUCKING QUESTION .... 
-Link - Light Weight. Has children which are like Text
-Ex: 
+Q29. What is the difference between Link vs LinkContainer ??
+
+> GOOD FUCKING QUESTION ....
+> Link - Light Weight. Has children which are like Text
+> Ex:
+
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
 
-
 LinkContainer - Middle Weight. Has children which are react-bootstrap components
-Ex: 
-        <LinkContainer to={`/prod1uct/${product._id}`}>
-          <Card.Title as='div' className='text-info'>
-            <strong>LinkContainer with CardTitle as div</strong>
-          </Card.Title>
-        </LinkContainer>
-
+Ex:
+<LinkContainer to={`/prod1uct/${product._id}`}>
+<Card.Title as='div' className='text-info'>
+<strong>LinkContainer with CardTitle as div</strong>
+</Card.Title>
+</LinkContainer>
 
 Router - Heavey Weight, uploads components to the screen
 Ex:
-  <Router>
-      <Header />
-      <main></main>
-      <Footer />
-  </Router>
+<Router>
+
+<Header />
+<main></main>
+<Footer />
+</Router>
 
 Q30. What happens when you type in a path which is not defined in the Router?
 Ex: http://localhost:3000/helloWorld
+
 - Brings up an empty Page with No components
 
-30b. What is match ? 
+30b. What is match ?
+
 - Match object contains information about how a <Route path> matched the URL
 - Match contains the following properties
-> params: (object)key/value pair parsed from the URL
-> isExact: (boolean) TRUE if entire URL was matched
-> path: (string) the path pattern used to match. Useful for building nested <Route>s
-> url: (string) the matched portion of the URL. Useful for building nested <Links>s
+  > params: (object)key/value pair parsed from the URL
+  > isExact: (boolean) TRUE if entire URL was matched
+  > path: (string) the path pattern used to match. Useful for building nested <Route>s
+  > url: (string) the matched portion of the URL. Useful for building nested <Links>s
 
 Q31. How does product page know which id is sent ?
+
 - Its in the URL being passed by the Router
 - Remember that in App.js we use <Route path='/product/:id' component={ProductScreen} />
 - Then we destructure and call it 'match'
-const ProductScreen = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.id)
+  const ProductScreen = ({ match }) => {
+  const product = products.find((p) => p.\_id === match.params.id)
   console.log('match: ' + match.params.hello)
   return <div>{product.name}</div>
-}
-*** Wait how do you know its /product/1 or /product/2 ???
+  }
+  \*\*\* Wait how do you know its /product/1 or /product/2 ???
 - BECAUSE it is defined in the 'products.js' file in the HomeDirectory
 
-Q31c. What is location ? 
+Q31c. What is location ?
+
 - Represents where the app is Now, where you want it to go or even where it was:
 
-Q31d. What is location.search ? 
-- Returns the query string including the initial question mark+
-Ex: 
-http://www.example.org/index.php?param=arg
-location.search is ?param=arg
+Q31d. What is location.search ?
 
+- Returns the query string including the initial question mark+
+  Ex:
+  http://www.example.org/index.php?param=arg
+  location.search is ?param=arg
 
 Q32. What is the 'fluid' keyword ?
+
 - Makes images/object NOT go past its container
 
-33. When do we use backticks ``?
-Ex:
-  <Rating value={product.rating} text={`${product.numReviews}`} />
+33. When do we use backticks ``? Ex: <Rating value={product.rating} text={`${product.numReviews}`} />
 
-34. How to disable a button if there is no stock left ? 
+34. How to disable a button if there is no stock left ?
+
 - This checks if the button has stock or not:
-<Button className='btn-block' type='button'disabled={product.countInStock === 0}
+  <Button className='btn-block' type='button'disabled={product.countInStock === 0}
 
 Q35. Why do we need to use mongoose ?
+
 - Communicates between MongoDB and Backend Express server
 
 Q36. What is the purpose of the backend ?
+
 - Create controllers, models ..etc
 
 37. To get the data from the backend, we need to perform HTTP request like 'GET' 'POST' ..etc
-- Basically:
-GET   : Used for fetching data (Ex: /api/products)
-POST  : Used for adding data   (Ex: /api/products)
-PUT   : Used for updating data  (Ex: /api/products/25 .... Note: you need to have an id)
-DELETE : Used for delete data   (Ex: /api/products/25 .... Note: you need to have an id)
 
-::: For BackEnd
-38. How to initialize package.json 
+- Basically:
+  GET : Used for fetching data (Ex: /api/products)
+  POST : Used for adding data (Ex: /api/products)
+  PUT : Used for updating data (Ex: /api/products/25 .... Note: you need to have an id)
+  DELETE : Used for delete data (Ex: /api/products/25 .... Note: you need to have an id)
+
+::: For BackEnd 38. How to initialize package.json
+
 - Go to root folder and type in:
   npm init
 - Follow the instructions
 - After this is completed, it will create a 'package.json' in the home folder
 
 Ex:
-package name: (mern_ecommerceapp) 
-version: (1.0.0) 
+package name: (mern_ecommerceapp)
+version: (1.0.0)
 description: MERN shopping cart app
 entry point: (index.js) server.js
-test command: 
-git repository: (https://github.com/timManas/MERN_eCommerceApp.git) 
-keywords: 
-author: 
+test command:
+git repository: (https://github.com/timManas/MERN_eCommerceApp.git)
+keywords:
+author:
 license: (ISC) MIT
 About to write to /Users/timmanas/ProgrammingProjects/MERNStack/MERN_eCommerceApp/package.json:
 
 {
-  "name": "mern_ecommerceapp",
-  "version": "1.0.0",
-  "description": "MERN shopping cart app",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/timManas/MERN_eCommerceApp/issues"
-  },
-  "homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
+"name": "mern_ecommerceapp",
+"version": "1.0.0",
+"description": "MERN shopping cart app",
+"main": "server.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"repository": {
+"type": "git",
+"url": "git+https://github.com/timManas/MERN_eCommerceApp.git"
+},
+"author": "",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/timManas/MERN_eCommerceApp/issues"
+},
+"homepage": "https://github.com/timManas/MERN_eCommerceApp#readme"
 }
 
-Q39. How to install express ? 
+Q39. How to install express ?
+
 - Make sure youre in the root folder
 - Type in:
   npm i express
 
 40. Note !!! Our Entry point in Backend is server.js
 
-Q41. What is modules ? 
-- Backend is using Common JS 
+Q41. What is modules ?
+
+- Backend is using Common JS
 - FrontEnd is using ES Module (i.e using import syntax)
 
 Q42. How to run node backend Server ?
+
 - Type the following in the root folder:
   node backend/server
 
 43. Instead of constantly having to type in "node backend/server" just to start up the server,
-we can create a script on the 'package.json' to start it
-Ex: 
- "scripts": {
+    we can create a script on the 'package.json' to start it
+    Ex:
+    "scripts": {
     "start": "node backend/server"
-  },
+    },
+
 - This will allow you to run node server just using:
   'npm start'
 
-
 44. How to start the frontEnd & BackEnd ?
-Note there are two process to start:
+    Note there are two process to start:
 1. FrontEnd:
-  - Go to frontend folder and type in: "npm start"
+
+- Go to frontend folder and type in: "npm start"
 
 2. BackEnd:
-  - Go to Root folder and type in: "npm start"
 
+- Go to Root folder and type in: "npm start"
 
 45. What is axios ?
+
 - HTTP Library which is used to make HTTP request
 
 46. How to install axios ?
+
 - Go to frontend folder and type:
   npm i axios
 
-47. Flow is 
-Client -> go to localhost:3000 -> Gets Website > Website makes HTTP request for products on backend > Backend sends product to Website Client
+47. Flow is
+    Client -> go to localhost:3000 -> Gets Website > Website makes HTTP request for products on backend > Backend sends product to Website Client
 
-48. What is state ? 
+48. What is state ?
+
 - Global level state
 - Application level state (Component, form)
 
-Q49. What is the useState hook in react ? 
-- It us to use state in functional components
-Ex: const [products, setProducts] = useState([])
-"products" is what we want to call the state
-"setProducts" is the function we want to call to manipulate the state
+Q49. What is the useState hook in react ?
 
+- It us to use state in functional components
+  Ex: const [products, setProducts] = useState([])
+  "products" is what we want to call the state
+  "setProducts" is the function we want to call to manipulate the state
 
 Q50. What is the useEffect hook in react ?
+
 - Makes a request to the backend
 - Runs as soon as the component loads
 
-51. How to create a proxy to connect from localhost:3000 to localhost:5000 ? 
+51. How to create a proxy to connect from localhost:3000 to localhost:5000 ?
+
 - Go to frontend package.json
 - Add in this line "proxy": "http://127.0.0.1:5000"
 - Restart frontEnd Server
 
 Q52. What is nodemon ?
+
 - Nodemon is a tool which constantly watches the server so we dont have to keep resetting it
 - If you dont use nodemon, you have keep restarting the server to pick up the changes
 
-Q53. What is concurrently ? 
+Q53. What is concurrently ?
+
 - Allows user to run both backend + frontend at the same time
 
-52. How to install nodemon ? 
+52. How to install nodemon ?
+
 - Go to root and type in:
-npm i nodemon concurrently
+  npm i nodemon concurrently
 
 53. How to install as Dev Dependencies ?
-- Type in -D in npm install
-Ex: 
-npm i -D nodemon concurrently
 
-- After install, it should get add into Dev depenencies 
-Ex: 
+- Type in -D in npm install
+  Ex:
+  npm i -D nodemon concurrently
+
+- After install, it should get add into Dev depenencies
+  Ex:
   "devDependencies": {
-    "concurrently": "^5.3.0",
-    "nodemon": "^2.0.6"
+  "concurrently": "^5.3.0",
+  "nodemon": "^2.0.6"
   }
 
+54. How to use nodemon ?
 
-54. How to use nodemon ? 
 - Install nodemon
-- Once install go to your package.json 
+- Once install go to your package.json
 - Go to the scripts and add in this line "server": "nodemon backend/server"
-Ex:
- "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server"
+  Ex:
+  "scripts": {
+  "start": "node backend/server",
+  "server": "nodemon backend/server"
   },
 
 55. How to run both Backend + FrontEnd at the same time
+
 - Install concurrently
 - Go to root package.json
 - Add this line to scripts:
   "dev": "concurrently \"npm run server\" \"npm run client\""
 - Go to root and type in:
   npm run dev
-Ex:
+  Ex:
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+  "start": "node backend/server",
+  "server": "nodemon backend/server",
+  "client": "npm start --prefix frontend",
+  "dev": "concurrently \"npm run server\" \"npm run client\""
   },
 
+Q56. What is dotenv ?
 
-Q56. What is dotenv ? 
 - loads environment variables from .env file into process.environment
 
 57. How to install dotenv ?
+
 - Type:
- npm i dotenv
+  npm i dotenv
 
 58. What is the purpose of the .env file ?
+
 - Store any keys, tokens, Ports of the environment on a file
 
+Q59. What is the ES6 Modules ?
 
-
-Q59. What is the ES6 Modules ? 
 - Note: require() uses the common JS syntax
 
 Q60. How to convert from common JS syntax to ES6 Module
+
 - Must have node v14.6+ a
   > How to install latest version of node ?
   > Use nvm ...Type in nvm install 14.51.1
 - Go to package.json
-- Add in "type": "module 
-Ex: 
+- Add in "type": "module
+  Ex:
   "name": "mern_ecommerceapp",
   "version": "1.0.0",
   "description": "MERN shopping cart app",
   "main": "server.js",
   "type": "module",
 
-61.  If using ES6 module, you need to have ".js" in files 
+61. If using ES6 module, you need to have ".js" in files
 
 ::: MongdoDB
 Q62. What is MongoDB Compass ?
+
 - Desktop GUI to managing your mongoDB database
 - Why use compass ? So we dont have to constantly log into Atlas and simply check compass
 
 63. How to connect through Compass ?
+
 - Go to MongoDb Atlas
 - Go to Clusters > connect > Connect using MongoDb Compass
-- Select "I have MongoDB Compass"  
+- Select "I have MongoDB Compass"
 - Copy the connection string
 - Paste into MongoDB Compass
   > Dont forget to change the password
   > Dont forgett to change from /test to /DatabaseNAME_XYZ ...(Ex: /proshop)
-  Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
+  > Ex: mongodb+srv://timmanas:<password>@cluster0.9czdc.mongodb.net/proshop
 
 64. How to connect your application to MongoDB URI
+
 - Go to Atlas
 - Go to Clusters > connect > Connect your application
 - Copy connection string
 - Place inside .env file
   > Dont forget to change the password
   > Dont forget to change dbname
-Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
+  > Ex. MONGO_URI=mongodb+srv://timmanas:<Password>@cluster0.9czdc.mongodb.net/proshop?retryWrites=true&w=majority
 
-65. What is Mongoose ? 
+65. What is Mongoose ?
+
 - Object modelling for NodeJS
-- Allows user to create models and schema  
+- Allows user to create models and schema
 
-Q66. What is a Schema ? 
+Q66. What is a Schema ?
+
 - Represent the structure of a database
 - Also Schema = Database
 - Has three types of Schema: Physical, Logical and View Schema
 - Contains objects (ex. Tables, Columns, DataTypes, views, keys ..etc)
 
 67. How to install Mongoose ?
+
 - Go to root:
   npm i mongoose
 
 68. Optional: Install colors package for your console logs
+
 - npm i colors
 
 69. What is a model ?
+
 - This represents the data model
 - Encapsultates business logic and data
 
 --> 70. How to prepare Data to be imported to MongoDB ?
-Note: Make sure to remove the _id in the product.js first
+Note: Make sure to remove the \_id in the product.js first
 Why ? Because when data is entered into mongoDB, mongoDB automatically
-assigns an _id to it
+assigns an \_id to it
 
 71. What is bcryptJS ?
+
 - Hashes your password
 
 70. How to install bcryptjs ?
+
 - npm i bcryptjs
 
-73. How to hash passwords using bcrypt ? 
-  const salt = bcrypt.genSaltSync(10)
-  const hash = bcrypt.hashSync(password, salt)
+73. How to hash passwords using bcrypt ?
+    const salt = bcrypt.genSaltSync(10)
+    const hash = bcrypt.hashSync(password, salt)
 
+Q74. What is a database seeder ?
 
-
-Q74. What is a database seeder ? 
 - Allows user to easily import some sample data
 
 Q75. How to run seeder js file ?
+
 - Go to root folder type in:
-"node backend/seeder"      - Used for import data
-"node backend/seeder -d"      - Used for destroying data
-Or you can put in npm  by:
-- modify package.json to be: 
+  "node backend/seeder" - Used for import data
+  "node backend/seeder -d" - Used for destroying data
+  Or you can put in npm by:
+- modify package.json to be:
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d"
+  "start": "node backend/server",
+  "server": "nodemon backend/server",
+  "client": "npm start --prefix frontend",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "data:import": "node backend/seeder",
+  "data:destroy": "node backend/seeder -d"
   },
 
-Q76. What is express-async-handler  middleware ? 
+Q76. What is express-async-handler middleware ?
+
 - Simple middleware for handling exceptions inside of async express routes
-and passing them to express error handling
+  and passing them to express error handling
 
 77. How to install express-async-handler ?
-Go to root folder, type in:
-npm i express-async-handler
+    Go to root folder, type in:
+    npm i express-async-handler
 
-Q78. What is middleware in react ? 
+Q78. What is middleware in react ?
+
 - Middleware is function that access to request response cycle
 
 79. How to use your middleware ?
+
 - You have to use:
-app.use((req,res, next) => {})
+  app.use((req,res, next) => {})
 
 Q80. What to move from one middleware to another ?
+
 - You have to use the 'next' in the (req,res, next) => {}
 
 81. The Models in the model folder... they are the key values which goes into the Database
-i.e Users has name, email, password, isAdmin as keys.. Hence all values which goes into users needss to have these properties
+    i.e Users has name, email, password, isAdmin as keys.. Hence all values which goes into users needss to have these properties
+
 - The schema defines what type of values it is expecting (i.e String, Number, Boolean, etc)
 
 82. Middleware just allows to keep track of different error handling
 
 ::::: Redux
-Q83. What is Redux  ? 
+Q83. What is Redux ?
+
 - library which allows JS applications to manage application state
 
 Q84. What is state in Redux ?
 
 Q85. What is component level state ?
+
 - deals with components (ex: header, footer, screens, dropdown, menu)
 
 Q86. What is global level state .. aka applicate state ?
-- Redux for application state 
+
+- Redux for application state
 - Use Redux for products, authentication state, shopping cart items ..etc
 
 Q86. What is Redux Pattern ?
 
-
 Q87. What is Reducers ?
+
 - Functions that take in actions and pass state to components
-- Takes in initial state and action. 
+- Takes in initial state and action.
 - Returns that specific part of the global store
 
 Q88. What are actions ?
+
 - Actions are objects to change a piece of state
 - An object containing a:
+
 1. Type
 2. Payload
-- Used to tell the reducer how to update the store 
+
+- Used to tell the reducer how to update the store
 
 Q89. What are action creators ?
+
 - Function that takes in payload and creates an action object
 
 90. Think of state as cloud hovering your application and when we need somethign to happen,
-we need to create 
+    we need to create
 
 91. Make sure to install Redux DevTools
 
 92. How to install redux ?
-- Go to frontend folder and type:
-npm i redux react-redux redux-thunk
 
-Q93. What is react-reduxt ? 
+- Go to frontend folder and type:
+  npm i redux react-redux redux-thunk
+
+Q93. What is react-reduxt ?
+
 - Redux for react
-> Why do we need this ? it allows react to work with redux
+  > Why do we need this ? it allows react to work with redux
 
 Q94. What is react-thunk ?
+
 - Middle ware
 - Allows to make async request in action creators, since we need to communicate to servers
 
 Q95. What is redux-devtools-extension ?
+
 - redux-devtools dont work on their own
 - this extension allows it work
 
 Q96. What is Provider ?
-- A component from react-redux 
+
+- A component from react-redux
 - Wraps our app component and allows each child component to be connected to the store
 
-Q97. What is arrow function in JS ? 
+Q97. What is arrow function in JS ?
 
 Q98. There is a pattrn here. We create
+
 1. Constant
 2. Reducers
 3. Actions
 4. Fire off in Component
 
-99. What is combineReducers ? 
+5. What is combineReducers ?
+
 - Function that allows user to put together All reducers into a Single Object (aka. Root Reducer)
 
-100. What is a store/global state ? 
+100. What is a store/global state ?
+
 - An object
 - Think of it as mega state that is accessed and updated with its own functions
 
 101. What is createStore () ?
-- Function from redux that uses rootReducer to create the store 
 
-102. What is dispatch ? 
+- Function from redux that uses rootReducer to create the store
+
+102. What is dispatch ?
+
 - Function from redux
 - Sends an action object to its reducer
 
 103. What is mapStatetoProps ?
-- a Function
-- Function we creaet that takes in global state objects and returns an object to be added 
-to a component as part of its props object
 
-104. What is mapDispatchToProps ? 
+- a Function
+- Function we creaet that takes in global state objects and returns an object to be added
+  to a component as part of its props object
+
+104. What is mapDispatchToProps ?
+
 - A function
-- Function we create that takes in dispatch and returns an object to be added to a component as part 
-of its props object
+- Function we create that takes in dispatch and returns an object to be added to a component as part
+  of its props object
 - Allows component to update data in store
 
-105. What is connect ? 
+105. What is connect ?
+
 - Function from react-redux
 - Allows us to connect to a component to the store by adding items from the store to our component props
 - and adding dispatch to our component properties
 
 106. What is container ?
+
 - Component that has been connected to the store
 
 107. Flow
-You          Put Stuff into small tube              Tube        Teller                    Computer
-Component -> Action Creator  -> Creates Action ->  Dispatch -> Reducer -> Root Reducer -> Store -> Do something (Change State...etc) -> Components FETCH from store using useSelector()
-            (Create Actions)  (Has Type + Payload)                       (Returns State)                                              (Example: HomeScreen fetch productList from store)
-              
+     You Put Stuff into small tube Tube Teller Computer
+     Component -> Action Creator -> Creates Action -> Dispatch -> Reducer -> Root Reducer -> Store -> Do something (Change State...etc) -> Components FETCH from store using useSelector()
+     (Create Actions) (Has Type + Payload) (Returns State) (Example: HomeScreen fetch productList from store)
+
 Q108. What is useEffect() ?
+
 - hook
 - Tells react that your component needs to do something AFTER rendering
 - React will remember the function you passed and call it later after performing DOM Updates
 
-Q109. What is variant ? 
+Q109. What is variant ?
 
 Q110. What is useState() ?
 Q111. What is history ?
 Ex: history.push(`/cart/${match.params.id}?qty=${qty}`)
+
 - Used to redirect
 
-Q112. What is the question mark after :id in 
+Q112. What is the question mark after :id in
 <Route path='/product/:id?' ?
-- Routes it so that id is NOT mandatory to be in the URI 
 
-Q113. How to save entire cart to LocalStorage ? 
--   localStorage.setItem('cartItems', getState().cart.cartItems)
+- Routes it so that id is NOT mandatory to be in the URI
 
-Q114. What is useSelector() ? 
-Ex:  const cart = useSelector((state) => state.cart)
- 
-Q115. Where are these parameters coming from ? 
-Ex: 
+Q113. How to save entire cart to LocalStorage ?
+
+- localStorage.setItem('cartItems', getState().cart.cartItems)
+
+Q114. What is useSelector() ?
+Ex: const cart = useSelector((state) => state.cart)
+
+Q115. Where are these parameters coming from ?
+Ex:
 const CartScreen = ({ match, location, history }) => {
 const ProductScreen = ({ history, match }) => {
 
 115B. Flow is
 User <=> Request <=> Routes <=> Controllers <=> Response to the request sent back to user
-  
+
 Q116. What are controllers ?
+
 - Controls request logic
 - Coordinateds between View and Model
 - Responsible for controllowing the flow of the application execution
 - Every request going into app goes into Controllers and returns a response to the request
-- Can perform different types of action 
+- Can perform different types of action
 
 117. Routes should point to Controller methods
 
 118. Authentication Request Flow
-Postman > Post request > Server.js routes  > UserController (Does the Authenticaiton)
+     Postman > Post request > Server.js routes > UserController (Does the Authenticaiton)
 
-Q119. What is JWT ? 
+Q119. What is JWT ?
+
 - JSON web token
 - For authorization after authentication
 - Authentication will authorize a user to log into website using secret key called JWT
 - Consist of three different parts:
+
 1. Header
 2. Payload - Ex: Username, id (Note: Do not put passwords here)
 3. Verify Signature - Verifies nothing has been modified and verifies user is actually them
 
 Q120. What is Bearer Token ?
-Q121. What is node-jsonwebtoken ? 
+Q121. What is node-jsonwebtoken ?
 
 Q122. How to install json webtoken ?
+
 - npm i jsonwebtoken
 
-Q123. How to generate a JSON WebToken ? 
+Q123. How to generate a JSON WebToken ?
 import jwt from 'jsonwebtoken'
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-  })
+return jwt.sign({ id }, process.env.JWT_SECRET, {
+expiresIn: '30d',
+})
 }
 
 Q124: How to decode a JSON WebToken
+
 - Take the token from Postman for logging in
-Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
+  Ex: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDE3NTc1NjY1ZGRjNDBjNDNlZTVjNiIsImlhdCI6MTYwODA4NTM3NiwiZXhwIjoxNjEwNjc3Mzc2fQ.7lxQ7c9mY3j0VArtu35Epx07TTCXJbuRpF1HDwaNZlw"
 - Go to JWT.io
 - Paste token into "Encoded"
-- You can see the header, payload, signature 
+- You can see the header, payload, signature
 
-Q125. What is next in middleware ? 
+Q125. What is next in middleware ?
 Ex: const protect = async(req, res, next) => {}
 
 Q126. what does next() do ?
@@ -1688,72 +1809,77 @@ Q126. what does next() do ?
 Q127. What is salt on bcryt ?
 
 Q128. What is useDispatch ?
-Q129. What is useSelector ? 
+Q129. What is useSelector ?
 
-Bug130. Found a bug, when the user registers, logouts and clicks on "Register" again on 
+Bug130. Found a bug, when the user registers, logouts and clicks on "Register" again on
 Login screen, we get directed to the home page instead of the registration screen ...
 
-Q131. What is redirect & redirect value ? 
+Q131. What is redirect & redirect value ?
 
-Q132. Why does Authorization dont need a quotation marks ? 
-Ex: 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${}`               
-      },
-    }
+Q132. Why does Authorization dont need a quotation marks ?
+Ex:
+const config = {
+headers: {
+'Content-Type': 'application/json',
+Authorization: `Bearer ${}`  
+ },
+}
 
-Q134. Why do we need to call e.preventDefault()  on eventHandler since its a form ?
+Q134. Why do we need to call e.preventDefault() on eventHandler since its a form ?
+
 > So the page does NOT REFRESH when we click on the button which triggers the event
 
 Q135. How to move from one page to another ?
+
 - use history.push()
 
 135b. What are Links ?
+
 - Link to another page
 - By default, they are equivalent to anchor tags 'a'
 - However, they do not RELOAD the page. So our apps stays as SPA
 
 Example: This will display an a tag
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as='div' className='text-danger'>
-            <strong>Link with CardTitle as div</strong>
-          </Card.Title>
-        </Link>
 
-Example: This will display a tag 
-        <Link to={`/product/${product._id}`}>
-          <strong>Link Default</strong>
-        </Link>
-
-
-Q136. What is LinkContainer ? 
-- LINK CONTAINERS TAKE ON THE THEIR CHILD ELEMENT AND ADD A LINK TO IT ...
-- They make their "Containers" as "Links" .... capiche ? 
-Example: This will display a div  
-        <LinkContainer to={`/product/${product._id}`}>
-          <Card.Title as='div' className='text-info'>
-            <strong>LinkContainer with CardTitle as div</strong>
-          </Card.Title>
-        </LinkContainer>
+<Link to={`/product/${product._id}`}>
+<Card.Title as='div' className='text-danger'>
+<strong>Link with CardTitle as div</strong>
+</Card.Title>
+</Link>
 
 Example: This will display a tag
-        <LinkContainer to={`/login`}>
-          <Card.Title className='text-info' as='a'>
-            <strong>LinkContainer as a </strong>
-          </Card.Title>
-        </LinkContainer>
+
+<Link to={`/product/${product._id}`}>
+<strong>Link Default</strong>
+</Link>
+
+Q136. What is LinkContainer ?
+
+- LINK CONTAINERS TAKE ON THE THEIR CHILD ELEMENT AND ADD A LINK TO IT ...
+- They make their "Containers" as "Links" .... capiche ?
+  Example: This will display a div  
+   <LinkContainer to={`/product/${product._id}`}>
+  <Card.Title as='div' className='text-info'>
+  <strong>LinkContainer with CardTitle as div</strong>
+  </Card.Title>
+  </LinkContainer>
+
+Example: This will display a tag
+<LinkContainer to={`/login`}>
+<Card.Title className='text-info' as='a'>
+<strong>LinkContainer as a </strong>
+</Card.Title>
+</LinkContainer>
 
 Example: This will display as strong tag with a link
-        <LinkContainer to={`/login`}>
-          <strong>LinkContainer by strong</strong>
-        </LinkContainer>
+<LinkContainer to={`/login`}>
+<strong>LinkContainer by strong</strong>
+</LinkContainer>
 
 Example: This will display as a bold tag with a link
-        <LinkContainer to={`/login`}>
-          <b>LinkContainer by b</b>
-        </LinkContainer>
+<LinkContainer to={`/login`}>
+<b>LinkContainer by b</b>
+</LinkContainer>
 
 Q137. This line disables the lint ?
 // eslint-disable-next-line
@@ -1764,18 +1890,21 @@ Q139. PaymentResult comes from paypal:
 Ex: export const payOrder = (order, paymentResult) => async (dispatch, getState) => {}
 
 Q140. How to log into Paypal developer account ?
+
 - Go to: developer.paypal.com/developer/applications
 
 150. You will need to create two accounts
-1 x business account
-1 x personal account
+     1 x business account
+     1 x personal account
 
 151. How to create an app on paypal
+
 - Go to Dashboard and click on "Create App"
-- Copy Client ID and copy of .env file 
+- Copy Client ID and copy of .env file
 
 152. In order to implement paypal, we will to include script
-"Paypal JS SDK Script"
+     "Paypal JS SDK Script"
+
 - Include this script:
 <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
 
@@ -1784,62 +1913,68 @@ Note: We need to build this script dynamically from useEffect
 Q153. How to rename arguments ?
 const { loading: loadingPay, success: successPay, error } = orderPay
 
-Q154. Why do we need to use react-paypal-button-v2 ? 
+Q154. Why do we need to use react-paypal-button-v2 ?
 
 155. Makesure to install paypal button on FrontEnd
 
 156. How to install react-paypal-button-v2 ?
+
 - Go to frontend
 - npm i react-paypal-button-v2
 
-::: Admin 
- 
+::: Admin
+
 157. This line get(protect, admin, getUsers). Will first go to protect(), then go to admin() then go to getUsers()
-How it does this is by callin in the next() function 
+     How it does this is by callin in the next() function
 
 158. How to send products back to the DB using the seeder ?
+
 - Run this root folder
-npm run data:import
+  npm run data:import
 
 160. How does the server handle file upload ?
-- Use Multer 
 
-161. What is Multer ? 
+- Use Multer
+
+161. What is Multer ?
+
 - Middlewaer for handling multipart/form-data
 - Used for uploading files
 
-162. How to install Multer ? 
+162. How to install Multer ?
+
 - Go to root and type in:
 
 163. What does path do ?
-Ex: path.extname()
+     Ex: path.extname()
 
-Q164. What is the mimetype ? 
+Q164. What is the mimetype ?
 
 Q165. YOu need to make the uploads folder static so you user can upload images to that folder
 
-Q166. How to make a folder static in expresS ? 
+Q166. How to make a folder static in expresS ?
+
 - Use path.join()
 
-167. path.join(__dirname, '/uploads') takes you the folder
+167. path.join(\_\_dirname, '/uploads') takes you the folder
 
 ::: Product Reviews, Search and More
 
 Q168. What is morgan ?
+
 - logger middleware
 - When someone hits a route in the backend, we can seee it logged in the console
 - See the HTTP, status code ...etc
 
 169. How to install morgan ?
-- Go root:
-npm i morgan
 
+- Go root:
+  npm i morgan
 
 170. Why do we need to inclde this when submitting a form ?
-Ex:   const submitHandler = (e) => {
-    e.preventDefault()          // We need to include this since we are submitting a form 
-  }
-
+     Ex: const submitHandler = (e) => {
+     e.preventDefault() // We need to include this since we are submitting a form
+     }
 
 171. Why do we need to react-render ?
 
@@ -1847,89 +1982,103 @@ Q172. What is req.query ?
 
 Q173. 'limit(pageSize)' - will limit the product show by the number of pageSize
 
-Q174. What is react-helmet ? 
+Q174. What is react-helmet ?
+
 - Adds custom meta tags on pages/components
 
 Q175. How to install react-helmet ?
-- Go to frontend and type: 
-npm i react-helmet
 
-Q176. In Prodution, you cannot do npm run dev ... so what do you do ? 
+- Go to frontend and type:
+  npm i react-helmet
+
+Q176. In Prodution, you cannot do npm run dev ... so what do you do ?
+
 - Build out static assets for react
 - Have backend load index.html thats built out
 
 177. What does npm run build do in the 'frontend' ?
-- Creates a build folder 
+
+- Creates a build folder
 
 178. The index.html file in the build folder is what we want to load in production
+
 - You need to prepare this
 
-180. Tip. 
+180. Tip.
+
 - If you go .env file and change NODE_ENV to 'production'
 - Then go to root and type in:
-npm start
+  npm start
 - Then go to localhost:5000. Then you will see the page load
 
-181. What is the Heroku post build script ? 
+181. What is the Heroku post build script ?
 
-Q182. What is the Heroku CLI ? 
+Q182. What is the Heroku CLI ?
 
-Q183. How to install Heroku ? 
+Q183. How to install Heroku ?
+
 - Go to root folder and type:
-brew tap heroku/brew && brew install heroku
+  brew tap heroku/brew && brew install heroku
 
-Q184. How to login into HEROKU CLU ? 
+Q184. How to login into HEROKU CLU ?
+
 - Go to root:
-heroku login
+  heroku login
 - Should open up a browser automatically
 - Click on 'Log In'
 
 Q185. How to create a Heroku application ?
+
 - Go to root:
-heroku create <NameOFApp...Must be UNIQUE>
-Ex: heroku create proshop2021
+  heroku create <NameOFApp...Must be UNIQUE>
+  Ex: heroku create proshop2021
 - It will show you the application URL && git repository for Heroku
-Ex:
-https://proshop2021.herokuapp.com/ | https://git.heroku.com/proshop2021.git
+  Ex:
+  https://proshop2021.herokuapp.com/ | https://git.heroku.com/proshop2021.git
 
 Q186. How to push App to Heroku repository
 
 Q187. Before pushing app to heroku you will need the following:
+
 1. ProcFile: Tells heroku what to run for our application
 2. Add the postbuild script on the package.json field  
-"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+   "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
 
 Q188. How to add Heroku as a remote repository ?
 
 189. Create a new Git repository
-- Go to root folder 
+
+- Go to root folder
 - Must have git folder already initialized
 - Type in this line:
-heroku git:remote -a proshop2021
-git push heroku master ... or git push heroku main
+  heroku git:remote -a proshop2021
+  git push heroku master ... or git push heroku main
 
 190. You will see "Application Error" after pushing to Heroku.
+
 - This is because it will take time to push
 
 191. How to access the Heroku logs /
+
 - Go to root of the folder:
-heroku logs
+  heroku logs
 
 192. You will see this error "Error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string."
+
 - This is because the .env file is NOT pushed, hence we have no connection go MongoDB since we placed it git ignore
 
 How to resolve this ?
+
 - Go to Heroku project on Dashboard
 - Go to Settings
 - Scroll down to 'Config Vars'
 - Add your ENV variables there
 
-193. *** ANYTIME YOU HAVE ISSUES, type in 'heroku logs'
+193. \*\*\* ANYTIME YOU HAVE ISSUES, type in 'heroku logs'
 
-194. Whats the difference between find vs findOne ? 
-find: Returns Array of objects
-findOne: Returns single Object
-
+194. Whats the difference between find vs findOne ?
+     find: Returns Array of objects
+     findOne: Returns single Object
 
 ===================================================================================================
 Base Code for sever.js
@@ -1948,53 +2097,52 @@ const app = express()
 
 // Initialize MongoDB
 const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    })
-    console.log(`MongoDB Connected: ${conn.connection.host}`)
-  } catch (error) {
-    console.log(`Error: ${error.message}`)
-    process.exit(1) // exit(1) - means you return with error
-  }
+try {
+const conn = await mongoose.connect(process.env.MONGO_URI, {
+useUnifiedTopology: true,
+useNewUrlParser: true,
+useCreateIndex: true,
+})
+console.log(`MongoDB Connected: ${conn.connection.host}`)
+} catch (error) {
+console.log(`Error: ${error.message}`)
+process.exit(1) // exit(1) - means you return with error
+}
 }
 
 // Connect Backend to MongoDB
 connectDB()
 
 // Make the upload folder static
-const __dirname = path.resolve()
+const \_\_dirname = path.resolve()
 
 // Initialize the Routes
 if (process.env.NODE_ENV === 'production') {
-  // Set the 'build' folder as a static folder
-  // Why ? So we can access the build folder and load the index.html
-  app.use(express.static(path.join(__dirname, '/frontend/build'))) // set frontend folder as a static folder
+// Set the 'build' folder as a static folder
+// Why ? So we can access the build folder and load the index.html
+app.use(express.static(path.join(\_\_dirname, '/frontend/build'))) // set frontend folder as a static folder
 
-  // Send the index.html file if on Production
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  })
+// Send the index.html file if on Production
+app.get('\*', (req, res) => {
+res.sendFile(path.resolve(\_\_dirname, 'frontend', 'build', 'index.html'))
+})
 } else {
-  app.get('/', (req, res) => {
-    res.send('API is running ....')
-  })
+app.get('/', (req, res) => {
+res.send('API is running ....')
+})
 }
 
 // Set up backend to listen to PORT 5000
 const PORT = process.env.PORT || 5000
 app.listen(
-  PORT,
-  console.log(
-    `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
-  )
+PORT,
+console.log(
+`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
+)
 )
 
-
 ===================================================================================================
-Base Code for CRUD 
+Base Code for CRUD
 ===================================================================================================
 
 import express from 'express'
@@ -2003,100 +2151,96 @@ import mongoose from 'mongoose'
 
 // Declare Schema using Mongoose
 const userSchema = mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-  },
-  {
-    timestamps: true,
-  }
+{
+name: {
+type: String,
+required: true,
+},
+email: {
+type: String,
+required: true,
+unique: true,
+},
+password: {
+type: String,
+required: true,
+},
+isAdmin: {
+type: Boolean,
+required: true,
+default: false,
+},
+},
+{
+timestamps: true,
+}
 )
 
 const User = mongoose.model('User', userSchema)
 
 const userTim = {
-  name: 'NEW CREATE USER',
-  email: 'HELLOwORLD@example.com',
-  password: '12345',
+name: 'NEW CREATE USER',
+email: 'HELLOwORLD@example.com',
+password: '12345',
 }
 
 // CREATE
 export const createUser = asyncHandler(async () => {
-  console.log('CREATE')
-  const userExists = await User.findOne({ email: 'HELLOwORLD@example.com' })
-  if (userExists) {
-    console.log('User already Exists ...cannot add New User')
-  } else {
-    const user = User.create(userTim)
-    if (user) {
-      console.log('Success Creating User')
-    }
-  }
+console.log('CREATE')
+const userExists = await User.findOne({ email: 'HELLOwORLD@example.com' })
+if (userExists) {
+console.log('User already Exists ...cannot add New User')
+} else {
+const user = User.create(userTim)
+if (user) {
+console.log('Success Creating User')
+}
+}
 })
 
 // READ
 export const readUser = asyncHandler(async () => {
-  const singleUser = await User.findById(process.env.ID)
-  console.log('\nREAD')
-  console.log(`Single User: ${singleUser} \n`)
+const singleUser = await User.findById(process.env.ID)
+console.log('\nREAD')
+console.log(`Single User: ${singleUser} \n`)
 })
 
 // UPDATE
 export const updateUser = asyncHandler(async () => {
-  const singleUser = await User.findById(process.env.ID)
-  console.log('\nUPDATE')
-  if (singleUser) {
-    singleUser.name = 'UpdatedUserName'
-    await singleUser.save()
-    console.log('Updated User')
-  }
+const singleUser = await User.findById(process.env.ID)
+console.log('\nUPDATE')
+if (singleUser) {
+singleUser.name = 'UpdatedUserName'
+await singleUser.save()
+console.log('Updated User')
+}
 })
 
 // DELETE
 export const deleteUser = asyncHandler(async () => {
-  try {
-    console.log('\nDELETE')
-    const user = await User.findOne({ email: 'HELLOwORLD@example.com' })
-    if (user) {
-      user.deleteOne()
-      console.log('Successfully Deleted User')
-    } else {
-      console.log('Cannot delete ...user does not exists')
-    }
-  } catch (error) {
-    console.log('Error Deleting')
-  }
+try {
+console.log('\nDELETE')
+const user = await User.findOne({ email: 'HELLOwORLD@example.com' })
+if (user) {
+user.deleteOne()
+console.log('Successfully Deleted User')
+} else {
+console.log('Cannot delete ...user does not exists')
+}
+} catch (error) {
+console.log('Error Deleting')
+}
 })
-
-
 
 ===================================================================================================
 BFinal Questions
 ===================================================================================================
 
-
-
-
 1. BackEnd
+
 - How does Mongoose know if connection is open ?
 - What is Async ?
-- How does mongoose know when to connect ? 
+- How does mongoose know when to connect ?
 - Why do we need "export default ? "
 - When do we export ?
 - What is asyncHandler ?
@@ -2106,9 +2250,9 @@ BFinal Questions
 - When do we use res.json() vs res.send()
 - What are the different HTTP Codes ?
 - Why can we group res together ? Ex: res.status(201).json()
-- What is middleware ? 
-- What is middleware used for ? 
-- What is jwt ? 
+- What is middleware ?
+- What is middleware used for ?
+- What is jwt ?
 - How to use jwt to verify token ?
 - What is (req, res, next) ?
 - What is a bearer token ?
@@ -2123,82 +2267,87 @@ BFinal Questions
 - what is res.sendFile() ?
 
 2. FrontEnd
+
 - What is axios ?
 - What is dispatch() ?
 - What is JSON.stringify ?
 - Why do we have double method ? I.e (id) => (dispatch, getState) => {}
-- What is getState ? 
-- How to destruture ? 
-Ex:     const {
-      userLogin: { userInfo },
-    } = getState()
+- What is getState ?
+- How to destruture ?
+  Ex: const {
+  userLogin: { userInfo },
+  } = getState()
 - What is Nav ?
 - What is LinkContainer ?
-- What is Nav.Item ? 
+- What is Nav.Item ?
 - What is NavLink ?
-- What is history ? 
-- What is Container ? 
+- What is history ?
+- What is Container ?
 - What is Row ?
-- What is Col ? 
-- Why do we wrap Row and Col with Container ? 
+- What is Col ?
+- Why do we wrap Row and Col with Container ?
 
-- What is state ? 
-> An object that represents parts of the app that can change 
-> Each component can maintain its own state and live in this.state
+- What is state ?
 
-- What is useState() from React ? 
-> Hook that lets you add React State to function components
+  > An object that represents parts of the app that can change
+  > Each component can maintain its own state and live in this.state
 
-- What is useEffect() from React ?  
-> Hook which tells component to do something after Render OR Update
+- What is useState() from React ?
+
+  > Hook that lets you add React State to function components
+
+- What is useEffect() from React ?
+
+  > Hook which tells component to do something after Render OR Update
 
 - What is useDispatch() from Redux ?
-> Trigger a state change
 
-- What is useSelector() from Redux ? 
-> Allows you to extract data from the Redux store using a selector function
+  > Trigger a state change
 
-- What is Navbar ? 
-- What is Navbar.brand ? 
+- What is useSelector() from Redux ?
+
+  > Allows you to extract data from the Redux store using a selector function
+
+- What is Navbar ?
+- What is Navbar.brand ?
 - What is Navbar.Toggle ?
-- What is Navbar.Collapse ? 
-- What is Nav ? 
+- What is Navbar.Collapse ?
+- What is Nav ?
 - What is NavDropDown ?
 - What is NavDropDown.Item ?
 - What is Spinner ?
-- What is Alert in react-bootstrap ? 
-- What is defaultProps ? 
-- What is Helmet ? 
-- What are meta tags ? 
-- What is Link ? 
-- What is Card ? 
-- What is prop-types ? 
-- What is '...' ? Ex. ...state 
-- What is state ? 
+- What is Alert in react-bootstrap ?
+- What is defaultProps ?
+- What is Helmet ?
+- What are meta tags ?
+- What is Link ?
+- What is Card ?
+- What is prop-types ?
+- What is '...' ? Ex. ...state
+- What is state ?
 - Why do we need redux ?
-- What is ListGroup ? 
+- What is ListGroup ?
 - What is '.reduce()' ? Ex: cartItems.reduce((acc, item) => acc + item.qty, 0)
 - What is Form ?
 - What is Form.Group ?
 - What is Form.Control ?
-- What is Form.Label ? 
+- What is Form.Label ?
 - What is BrowserRouter ?
-- What is Route ? 
-- What is Provider ? 
-> Bridge between Redux and App
+- What is Route ?
+- What is Provider ?
+  > Bridge between Redux and App
 
 Store
+
 - What is createStore ?
-- What is combineReducer ? 
-- What is applyMiddleware ? 
-- What is redux-thunk ? 
+- What is combineReducer ?
+- What is applyMiddleware ?
+- What is redux-thunk ?
 
 Misc ?
+
 - What is componentDidMount ?
-- What is componentDidUpdate ? 
-
-
-
+- What is componentDidUpdate ?
 
 ===================================================================================================
 Best Practices
@@ -2208,7 +2357,8 @@ Best Practices
 2. Create & Push to Git Repo
 3. Create & Push to Heroku Repo
 
-For EACH functionality 
+For EACH functionality
+
 1. Setup the backend Functionality
 2. Set up Middleware if required
 3. Setup the frontEnd Functionality
